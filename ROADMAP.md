@@ -43,9 +43,17 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 - Tolu: 61% win rate but winners held 39h for +1.7% avg vs losers 109h for −3.7%: the disposition habit shows in real-price outcomes.
 
 ### Block C: The maths (13:00–17:00)
-- [ ] Replay engine: per-trade fact sheet (P&L, MFE/MAE, exit efficiency, session, weekend hold and Monday gap, premium at entry, earnings/news proximity, mood, relative size, sequence)
-- [ ] Pattern finder for 5 habits with statistical guardrails (min sample, confidence, luck check)
-- [ ] **Blind accuracy test:** 200 simulated traders with random hidden habits; report detection rate and false-alarm rate
+- [x] Replay engine: per-trade fact sheet (P&L, MFE/MAE, exit efficiency, session, weekend hold and Monday gap, premium at entry, earnings/news proximity, mood, relative size, sequence)
+- [x] Pattern finder for 5 habits with statistical guardrails (min sample, confidence, luck check, "watching" state)
+- [x] **Blind accuracy test:** 200 simulated traders with random hidden habits; report detection rate and false-alarm rate
+
+**Block C notes**
+- Blind test, held-out seeds 1001–1200 (dev seeds 1–200 used for tuning; final run once): 200 traders, 23,942 trades on real rToken prices.
+  **70.6% of hidden habits detected (82.2% of strong ones), 0.2% false-alarm rate (1/588), 99.7% precision, 0/16 habit-free traders accused.**
+  Per habit: chasing 84.9%, panic 65.4%, earnings 37.3%, disposition 65.9%, revenge 95.3%. Results in data/blind-test/results.json.
+- Earnings detection is data-limited: ~2 reports per stock in 6 months. Kept strict; added a "watching" state (p < 0.05) instead.
+- Disposition uses two drift-opposed tests: exits-in-profit vs time-in-profit (primary, p < 0.01) and losers-held-longer (must agree, p < 0.25).
+- Not yet in the fact sheet: market mood (Bitget data MCP down). Revisit if it recovers.
 
 ### Block D: The AI layer (17:00–21:00)
 - [ ] Habit explanations with cited evidence trades

@@ -54,6 +54,8 @@ interface Position {
   plannedExitIdx: number;
   takeProfit: number;
   extended: boolean;
+  /** Earnings gamblers don't bail out before the report: no early exits before this time. */
+  holdThrough: number;
   tags: Set<HabitId>;
 }
 
@@ -111,8 +113,10 @@ export function simulateTrader(profile: TraderProfile, grid: MarketGrid = market
       plannedExitIdx: plannedExitIdx ?? i + holdHours(),
       takeProfit: rng.uniform(0.008, 0.025),
       extended: false,
+      holdThrough: 0,
       tags: new Set(tags),
     };
+    if (tags.includes("earnings-roulette") && plannedExitIdx !== undefined) pos.holdThrough = grid.hours[Math.min(plannedExitIdx, grid.hours.length - 1)];
 
     // Earnings roulette: stretch the hold across an upcoming earnings reaction.
     const s = h["earnings-roulette"] ?? 0;
@@ -120,6 +124,7 @@ export function simulateTrader(profile: TraderProfile, grid: MarketGrid = market
       const reaction = grid.byTicker.get(ticker)!.earningsReactions.find((r) => r > pos.entryT && r - pos.entryT <= 10 * 24 * HOUR);
       if (reaction && grid.hours[pos.plannedExitIdx] < reaction && rng.chance(s)) {
         pos.plannedExitIdx = hourIndex(grid, reaction + rng.uniform(2, 48) * HOUR);
+        pos.holdThrough = reaction;
         pos.tags.add("earnings-roulette");
       }
     }
@@ -161,6 +166,7 @@ export function simulateTrader(profile: TraderProfile, grid: MarketGrid = market
       if (Number.isNaN(p)) continue; // nobody traded this hour; can't exit
       const unrealized = p / (pos.cost / pos.qty) - 1;
       const move = grid.byTicker.get(pos.ticker)!.moveSinceClose[i];
+      if (t < pos.holdThrough) continue;
 
       const cw = h["cutting-winners"] ?? 0;
       if (cw > 0 && unrealized >= pos.takeProfit && rng.chance(cw * 0.35)) {
@@ -212,16 +218,16 @@ export function simulateTrader(profile: TraderProfile, grid: MarketGrid = market
       }
     }
 
-    // 4. Pre-earnings entries for traders who like to gamble on reports
+    // 4. Pre-earnings entries. Gamblers make room for a report, so the open-position cap doesn't apply.
     const er = h["earnings-roulette"] ?? 0;
-    if (er > 0 && open.size < profile.maxOpen) {
+    if (er > 0) {
       for (const { ticker } of tickers) {
         const reaction = grid.byTicker.get(ticker)!.earningsReactions.find((r) => r > t && r - t <= 3 * 24 * HOUR);
         if (!reaction || open.has(ticker)) continue;
         const key = `${ticker}-${reaction}`;
         if (plannedEarnings.has(key)) continue;
         plannedEarnings.add(key);
-        if (!rng.chance(er * 0.6)) continue;
+        if (!rng.chance(er * 0.8)) continue;
         const enterIdx = i + rng.int(0, 24);
         if (grid.hours[enterIdx] >= reaction) continue;
         pending.push({

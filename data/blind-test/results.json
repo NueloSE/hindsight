@@ -1,0 +1,2356 @@
+{
+ "runAt": "2026-10-06T10:34:09.175Z",
+ "seeds": [
+  1001,
+  1200
+ ],
+ "window": [
+  "2026-04-01T00:00:00.000Z",
+  "2026-09-30T23:00:00.000Z"
+ ],
+ "traders": 200,
+ "trades": 23942,
+ "overall": {
+  "tp": 291,
+  "fn": 121,
+  "fp": 1,
+  "tn": 587,
+  "insufficient": 8,
+  "detectionRate": 0.7063106796116505,
+  "falseAlarmRate": 0.0017006802721088435,
+  "precision": 0.9965753424657534
+ },
+ "perHabit": {
+  "closed-chasing": {
+   "tp": 73,
+   "fn": 13,
+   "fp": 1,
+   "tn": 113,
+   "insufficient": 0,
+   "detectionRate": 0.8488372093023255,
+   "falseAlarmRate": 0.008771929824561403,
+   "precision": 0.9864864864864865
+  },
+  "closed-panic": {
+   "tp": 53,
+   "fn": 28,
+   "fp": 0,
+   "tn": 119,
+   "insufficient": 0,
+   "detectionRate": 0.654320987654321,
+   "falseAlarmRate": 0,
+   "precision": 1
+  },
+  "earnings-roulette": {
+   "tp": 28,
+   "fn": 47,
+   "fp": 0,
+   "tn": 125,
+   "insufficient": 0,
+   "detectionRate": 0.37333333333333335,
+   "falseAlarmRate": 0,
+   "precision": 1
+  },
+  "cutting-winners": {
+   "tp": 56,
+   "fn": 29,
+   "fp": 0,
+   "tn": 115,
+   "insufficient": 0,
+   "detectionRate": 0.6588235294117647,
+   "falseAlarmRate": 0,
+   "precision": 1
+  },
+  "revenge": {
+   "tp": 81,
+   "fn": 4,
+   "fp": 0,
+   "tn": 115,
+   "insufficient": 8,
+   "detectionRate": 0.9529411764705882,
+   "falseAlarmRate": 0,
+   "precision": 1
+  }
+ },
+ "byStrength": [
+  {
+   "band": "weak (0.30–0.50)",
+   "detected": 63,
+   "planted": 127,
+   "detectionRate": 0.49606299212598426
+  },
+  {
+   "band": "moderate (0.50–0.75)",
+   "detected": 117,
+   "planted": 150,
+   "detectionRate": 0.78
+  },
+  {
+   "band": "strong (0.75–1.00)",
+   "detected": 111,
+   "planted": 135,
+   "detectionRate": 0.8222222222222222
+  }
+ ],
+ "cleanTraders": {
+  "total": 16,
+  "wronglyAccused": 0
+ },
+ "rows": [
+  {
+   "seed": 1001,
+   "trades": 53,
+   "planted": {
+    "closed-panic": 0.71
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1002,
+   "trades": 109,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1003,
+   "trades": 108,
+   "planted": {
+    "closed-panic": 0.64,
+    "earnings-roulette": 0.8
+   },
+   "detected": [
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1004,
+   "trades": 115,
+   "planted": {
+    "cutting-winners": 0.58,
+    "revenge": 0.58
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1005,
+   "trades": 101,
+   "planted": {
+    "closed-chasing": 0.4,
+    "closed-panic": 0.66,
+    "earnings-roulette": 0.46,
+    "cutting-winners": 0.86
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1006,
+   "trades": 134,
+   "planted": {
+    "closed-chasing": 0.37,
+    "revenge": 0.51
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1007,
+   "trades": 88,
+   "planted": {
+    "closed-chasing": 0.53
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1008,
+   "trades": 103,
+   "planted": {
+    "closed-chasing": 0.98,
+    "earnings-roulette": 0.6
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1009,
+   "trades": 63,
+   "planted": {
+    "earnings-roulette": 0.97
+   },
+   "detected": [
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1010,
+   "trades": 168,
+   "planted": {
+    "closed-panic": 0.4,
+    "earnings-roulette": 0.4,
+    "cutting-winners": 0.49
+   },
+   "detected": []
+  },
+  {
+   "seed": 1011,
+   "trades": 142,
+   "planted": {
+    "revenge": 0.33
+   },
+   "detected": []
+  },
+  {
+   "seed": 1012,
+   "trades": 105,
+   "planted": {
+    "closed-chasing": 0.74,
+    "cutting-winners": 0.95
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1013,
+   "trades": 190,
+   "planted": {
+    "closed-chasing": 0.79,
+    "earnings-roulette": 0.43
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1014,
+   "trades": 102,
+   "planted": {
+    "earnings-roulette": 0.89,
+    "cutting-winners": 0.59
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1015,
+   "trades": 56,
+   "planted": {
+    "closed-panic": 0.81,
+    "cutting-winners": 0.96
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1016,
+   "trades": 106,
+   "planted": {
+    "closed-panic": 0.54,
+    "earnings-roulette": 0.98
+   },
+   "detected": [
+    "closed-panic",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1017,
+   "trades": 63,
+   "planted": {
+    "earnings-roulette": 0.45,
+    "revenge": 0.38
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1018,
+   "trades": 130,
+   "planted": {
+    "earnings-roulette": 0.67
+   },
+   "detected": [
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1019,
+   "trades": 159,
+   "planted": {
+    "earnings-roulette": 0.65,
+    "revenge": 0.45
+   },
+   "detected": [
+    "earnings-roulette",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1020,
+   "trades": 150,
+   "planted": {
+    "closed-chasing": 0.33,
+    "closed-panic": 0.37,
+    "cutting-winners": 0.46
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1021,
+   "trades": 82,
+   "planted": {
+    "closed-chasing": 0.39,
+    "closed-panic": 0.55,
+    "revenge": 0.68
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1022,
+   "trades": 185,
+   "planted": {
+    "closed-chasing": 0.56,
+    "earnings-roulette": 0.9,
+    "revenge": 0.91
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1023,
+   "trades": 166,
+   "planted": {
+    "closed-chasing": 0.62,
+    "closed-panic": 0.81,
+    "cutting-winners": 0.9
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1024,
+   "trades": 146,
+   "planted": {
+    "closed-chasing": 0.58,
+    "closed-panic": 0.35,
+    "earnings-roulette": 0.61
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1025,
+   "trades": 164,
+   "planted": {
+    "closed-chasing": 0.46,
+    "earnings-roulette": 0.46,
+    "revenge": 0.68
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1026,
+   "trades": 172,
+   "planted": {
+    "closed-chasing": 0.32,
+    "closed-panic": 0.96,
+    "earnings-roulette": 0.46
+   },
+   "detected": []
+  },
+  {
+   "seed": 1027,
+   "trades": 118,
+   "planted": {
+    "closed-chasing": 0.82,
+    "closed-panic": 0.35,
+    "cutting-winners": 0.44
+   },
+   "detected": []
+  },
+  {
+   "seed": 1028,
+   "trades": 135,
+   "planted": {
+    "closed-chasing": 0.75,
+    "cutting-winners": 0.34,
+    "revenge": 0.58
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1029,
+   "trades": 63,
+   "planted": {
+    "closed-chasing": 0.92,
+    "cutting-winners": 0.9
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1030,
+   "trades": 126,
+   "planted": {
+    "closed-chasing": 0.88,
+    "closed-panic": 0.37,
+    "revenge": 0.72
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1031,
+   "trades": 172,
+   "planted": {
+    "closed-chasing": 0.31,
+    "closed-panic": 0.37,
+    "earnings-roulette": 0.55
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1032,
+   "trades": 83,
+   "planted": {
+    "cutting-winners": 0.8,
+    "revenge": 0.54
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1033,
+   "trades": 72,
+   "planted": {
+    "closed-panic": 0.37,
+    "cutting-winners": 0.5,
+    "revenge": 0.43
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1034,
+   "trades": 87,
+   "planted": {
+    "closed-panic": 0.32,
+    "earnings-roulette": 0.99
+   },
+   "detected": [
+    "closed-panic",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1035,
+   "trades": 165,
+   "planted": {
+    "closed-chasing": 0.37,
+    "earnings-roulette": 0.64,
+    "cutting-winners": 0.69,
+    "revenge": 0.81
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1036,
+   "trades": 136,
+   "planted": {
+    "closed-chasing": 0.76,
+    "earnings-roulette": 0.36,
+    "revenge": 0.58
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1037,
+   "trades": 74,
+   "planted": {
+    "closed-chasing": 0.84,
+    "cutting-winners": 0.93
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1038,
+   "trades": 128,
+   "planted": {
+    "closed-chasing": 0.73,
+    "closed-panic": 0.85,
+    "revenge": 0.41
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1039,
+   "trades": 108,
+   "planted": {
+    "closed-chasing": 0.58,
+    "closed-panic": 0.36
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1040,
+   "trades": 200,
+   "planted": {
+    "closed-panic": 0.43,
+    "cutting-winners": 0.59,
+    "revenge": 0.88
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1041,
+   "trades": 104,
+   "planted": {
+    "closed-chasing": 0.69
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1042,
+   "trades": 124,
+   "planted": {
+    "closed-chasing": 0.58,
+    "earnings-roulette": 0.51,
+    "cutting-winners": 0.61
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1043,
+   "trades": 118,
+   "planted": {
+    "closed-panic": 0.43,
+    "earnings-roulette": 0.57,
+    "cutting-winners": 0.45,
+    "revenge": 0.62
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1044,
+   "trades": 233,
+   "planted": {
+    "revenge": 0.8
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1045,
+   "trades": 94,
+   "planted": {
+    "closed-panic": 0.76,
+    "earnings-roulette": 0.38,
+    "revenge": 0.37
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1046,
+   "trades": 114,
+   "planted": {
+    "earnings-roulette": 0.51,
+    "revenge": 0.64
+   },
+   "detected": [
+    "earnings-roulette",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1047,
+   "trades": 73,
+   "planted": {
+    "closed-chasing": 0.36,
+    "cutting-winners": 0.64
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1048,
+   "trades": 216,
+   "planted": {
+    "closed-chasing": 0.62,
+    "closed-panic": 0.33,
+    "revenge": 0.55
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1049,
+   "trades": 128,
+   "planted": {
+    "earnings-roulette": 0.49,
+    "cutting-winners": 0.56
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1050,
+   "trades": 238,
+   "planted": {
+    "closed-panic": 0.49,
+    "revenge": 0.87
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1051,
+   "trades": 128,
+   "planted": {
+    "closed-chasing": 0.64,
+    "closed-panic": 0.35,
+    "cutting-winners": 0.84
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1052,
+   "trades": 56,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1053,
+   "trades": 173,
+   "planted": {
+    "earnings-roulette": 0.5,
+    "cutting-winners": 0.51,
+    "revenge": 0.89
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1054,
+   "trades": 172,
+   "planted": {
+    "earnings-roulette": 0.99,
+    "revenge": 0.9
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1055,
+   "trades": 98,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1056,
+   "trades": 73,
+   "planted": {
+    "closed-chasing": 0.99,
+    "cutting-winners": 0.95
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1057,
+   "trades": 109,
+   "planted": {
+    "cutting-winners": 0.44,
+    "revenge": 0.64
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1058,
+   "trades": 92,
+   "planted": {
+    "closed-chasing": 0.39,
+    "cutting-winners": 0.99
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1059,
+   "trades": 126,
+   "planted": {
+    "closed-chasing": 0.71,
+    "earnings-roulette": 0.42
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1060,
+   "trades": 151,
+   "planted": {
+    "closed-panic": 0.97,
+    "cutting-winners": 0.71
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1061,
+   "trades": 160,
+   "planted": {
+    "closed-panic": 0.75
+   },
+   "detected": []
+  },
+  {
+   "seed": 1062,
+   "trades": 138,
+   "planted": {
+    "closed-panic": 0.54,
+    "earnings-roulette": 0.36,
+    "revenge": 0.73
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1063,
+   "trades": 86,
+   "planted": {
+    "earnings-roulette": 0.81
+   },
+   "detected": [
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1064,
+   "trades": 88,
+   "planted": {
+    "closed-chasing": 0.48,
+    "cutting-winners": 0.56,
+    "revenge": 0.35
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1065,
+   "trades": 130,
+   "planted": {
+    "earnings-roulette": 0.38,
+    "revenge": 0.97
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1066,
+   "trades": 106,
+   "planted": {
+    "closed-chasing": 0.76,
+    "cutting-winners": 0.61,
+    "revenge": 0.61
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1067,
+   "trades": 81,
+   "planted": {
+    "closed-chasing": 0.45
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1068,
+   "trades": 95,
+   "planted": {
+    "earnings-roulette": 0.83,
+    "cutting-winners": 0.65
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1069,
+   "trades": 103,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1070,
+   "trades": 71,
+   "planted": {
+    "closed-chasing": 0.53,
+    "closed-panic": 0.63,
+    "cutting-winners": 0.73
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1071,
+   "trades": 118,
+   "planted": {
+    "cutting-winners": 0.83,
+    "revenge": 0.44
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1072,
+   "trades": 145,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1073,
+   "trades": 174,
+   "planted": {
+    "revenge": 0.62
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1074,
+   "trades": 100,
+   "planted": {
+    "cutting-winners": 0.69
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1075,
+   "trades": 238,
+   "planted": {
+    "earnings-roulette": 0.43,
+    "revenge": 0.81
+   },
+   "detected": [
+    "earnings-roulette",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1076,
+   "trades": 60,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1077,
+   "trades": 107,
+   "planted": {
+    "earnings-roulette": 0.31,
+    "revenge": 0.39
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1078,
+   "trades": 107,
+   "planted": {
+    "closed-panic": 0.39,
+    "cutting-winners": 0.53,
+    "revenge": 0.76
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1079,
+   "trades": 54,
+   "planted": {
+    "earnings-roulette": 0.38,
+    "cutting-winners": 0.34
+   },
+   "detected": []
+  },
+  {
+   "seed": 1080,
+   "trades": 132,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1081,
+   "trades": 177,
+   "planted": {
+    "closed-panic": 0.94,
+    "revenge": 1
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1082,
+   "trades": 66,
+   "planted": {
+    "cutting-winners": 0.8,
+    "revenge": 0.45
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1083,
+   "trades": 103,
+   "planted": {
+    "closed-chasing": 0.62,
+    "earnings-roulette": 0.76
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1084,
+   "trades": 67,
+   "planted": {
+    "cutting-winners": 0.92,
+    "revenge": 0.49
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1085,
+   "trades": 119,
+   "planted": {
+    "closed-panic": 0.74,
+    "earnings-roulette": 0.65,
+    "cutting-winners": 0.63
+   },
+   "detected": [
+    "closed-panic",
+    "earnings-roulette",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1086,
+   "trades": 115,
+   "planted": {
+    "closed-chasing": 0.79,
+    "closed-panic": 0.65,
+    "earnings-roulette": 0.55,
+    "revenge": 0.65
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1087,
+   "trades": 207,
+   "planted": {
+    "closed-chasing": 0.98,
+    "closed-panic": 0.55,
+    "earnings-roulette": 0.69,
+    "cutting-winners": 0.63,
+    "revenge": 0.89
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1088,
+   "trades": 97,
+   "planted": {
+    "cutting-winners": 0.9,
+    "revenge": 0.56
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1089,
+   "trades": 240,
+   "planted": {
+    "closed-panic": 0.83,
+    "revenge": 0.99
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1090,
+   "trades": 85,
+   "planted": {
+    "closed-chasing": 0.56,
+    "closed-panic": 0.32,
+    "revenge": 0.87
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1091,
+   "trades": 70,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1092,
+   "trades": 68,
+   "planted": {
+    "closed-chasing": 0.63,
+    "closed-panic": 0.82
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1093,
+   "trades": 200,
+   "planted": {
+    "closed-chasing": 0.47,
+    "revenge": 0.96
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1094,
+   "trades": 82,
+   "planted": {
+    "closed-chasing": 0.81,
+    "earnings-roulette": 0.38
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1095,
+   "trades": 114,
+   "planted": {
+    "revenge": 0.63
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1096,
+   "trades": 109,
+   "planted": {
+    "closed-chasing": 0.66,
+    "earnings-roulette": 0.52,
+    "revenge": 0.46
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1097,
+   "trades": 98,
+   "planted": {
+    "closed-chasing": 0.88
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1098,
+   "trades": 168,
+   "planted": {
+    "closed-chasing": 0.81,
+    "revenge": 0.48
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1099,
+   "trades": 117,
+   "planted": {
+    "closed-chasing": 0.69,
+    "closed-panic": 0.36,
+    "cutting-winners": 0.53
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1100,
+   "trades": 121,
+   "planted": {
+    "closed-panic": 0.77,
+    "revenge": 0.37
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1101,
+   "trades": 105,
+   "planted": {
+    "closed-panic": 0.58,
+    "revenge": 0.64
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1102,
+   "trades": 200,
+   "planted": {
+    "closed-chasing": 0.7,
+    "closed-panic": 0.36,
+    "revenge": 0.52
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1103,
+   "trades": 113,
+   "planted": {
+    "closed-panic": 0.48,
+    "earnings-roulette": 0.46,
+    "cutting-winners": 0.8
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1104,
+   "trades": 138,
+   "planted": {
+    "closed-panic": 0.69,
+    "cutting-winners": 0.3
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1105,
+   "trades": 98,
+   "planted": {
+    "closed-chasing": 0.38,
+    "earnings-roulette": 0.93,
+    "revenge": 0.44
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1106,
+   "trades": 63,
+   "planted": {
+    "closed-chasing": 0.51,
+    "cutting-winners": 0.5
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1107,
+   "trades": 63,
+   "planted": {
+    "cutting-winners": 0.98
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1108,
+   "trades": 39,
+   "planted": {
+    "closed-panic": 0.99
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1109,
+   "trades": 74,
+   "planted": {
+    "closed-panic": 0.7,
+    "cutting-winners": 0.73
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1110,
+   "trades": 103,
+   "planted": {
+    "cutting-winners": 0.85
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1111,
+   "trades": 161,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1112,
+   "trades": 128,
+   "planted": {
+    "closed-chasing": 0.33,
+    "earnings-roulette": 0.38
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1113,
+   "trades": 93,
+   "planted": {
+    "closed-chasing": 0.4,
+    "earnings-roulette": 0.8
+   },
+   "detected": []
+  },
+  {
+   "seed": 1114,
+   "trades": 118,
+   "planted": {
+    "closed-chasing": 0.91,
+    "earnings-roulette": 0.32
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1115,
+   "trades": 160,
+   "planted": {
+    "closed-chasing": 0.63,
+    "cutting-winners": 0.8
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1116,
+   "trades": 182,
+   "planted": {
+    "closed-panic": 0.32,
+    "cutting-winners": 0.6,
+    "revenge": 0.97
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1117,
+   "trades": 96,
+   "planted": {
+    "earnings-roulette": 0.64,
+    "cutting-winners": 0.79
+   },
+   "detected": [
+    "earnings-roulette",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1118,
+   "trades": 119,
+   "planted": {
+    "closed-panic": 0.93
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1119,
+   "trades": 127,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1120,
+   "trades": 69,
+   "planted": {
+    "cutting-winners": 0.7
+   },
+   "detected": []
+  },
+  {
+   "seed": 1121,
+   "trades": 144,
+   "planted": {
+    "closed-chasing": 0.63,
+    "closed-panic": 0.68,
+    "cutting-winners": 0.88,
+    "revenge": 0.45
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1122,
+   "trades": 120,
+   "planted": {
+    "revenge": 0.85
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1123,
+   "trades": 100,
+   "planted": {
+    "closed-chasing": 0.35,
+    "closed-panic": 0.59,
+    "earnings-roulette": 0.74,
+    "cutting-winners": 0.63
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "earnings-roulette",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1124,
+   "trades": 140,
+   "planted": {
+    "closed-chasing": 0.97,
+    "closed-panic": 0.64
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1125,
+   "trades": 134,
+   "planted": {
+    "closed-chasing": 0.87
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1126,
+   "trades": 152,
+   "planted": {
+    "closed-panic": 0.93,
+    "earnings-roulette": 0.97,
+    "revenge": 0.98
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1127,
+   "trades": 98,
+   "planted": {
+    "closed-chasing": 0.79
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1128,
+   "trades": 80,
+   "planted": {
+    "closed-chasing": 0.39,
+    "earnings-roulette": 0.33
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1129,
+   "trades": 171,
+   "planted": {
+    "closed-chasing": 0.73
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1130,
+   "trades": 82,
+   "planted": {
+    "closed-chasing": 0.8,
+    "closed-panic": 0.34,
+    "earnings-roulette": 0.31,
+    "revenge": 0.48
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1131,
+   "trades": 92,
+   "planted": {
+    "closed-chasing": 0.34,
+    "closed-panic": 0.54,
+    "revenge": 0.52
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1132,
+   "trades": 69,
+   "planted": {
+    "earnings-roulette": 0.41,
+    "cutting-winners": 0.57,
+    "revenge": 0.37
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1133,
+   "trades": 95,
+   "planted": {
+    "closed-chasing": 0.93,
+    "closed-panic": 0.75,
+    "cutting-winners": 0.37
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1134,
+   "trades": 70,
+   "planted": {
+    "earnings-roulette": 0.82,
+    "cutting-winners": 0.9,
+    "revenge": 0.6
+   },
+   "detected": [
+    "earnings-roulette",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1135,
+   "trades": 139,
+   "planted": {
+    "earnings-roulette": 0.48
+   },
+   "detected": []
+  },
+  {
+   "seed": 1136,
+   "trades": 94,
+   "planted": {
+    "closed-panic": 0.85
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1137,
+   "trades": 197,
+   "planted": {
+    "closed-chasing": 0.63,
+    "earnings-roulette": 0.66,
+    "revenge": 0.65
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1138,
+   "trades": 68,
+   "planted": {
+    "closed-chasing": 0.33,
+    "earnings-roulette": 0.98,
+    "cutting-winners": 0.59
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1139,
+   "trades": 130,
+   "planted": {
+    "closed-panic": 0.53,
+    "cutting-winners": 0.4
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1140,
+   "trades": 154,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1141,
+   "trades": 77,
+   "planted": {
+    "cutting-winners": 0.89
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1142,
+   "trades": 66,
+   "planted": {
+    "earnings-roulette": 0.47
+   },
+   "detected": [
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1143,
+   "trades": 220,
+   "planted": {
+    "closed-chasing": 0.91,
+    "cutting-winners": 0.64,
+    "revenge": 0.94
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1144,
+   "trades": 159,
+   "planted": {
+    "closed-panic": 0.35,
+    "cutting-winners": 0.55,
+    "revenge": 0.88
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1145,
+   "trades": 66,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1146,
+   "trades": 83,
+   "planted": {
+    "closed-panic": 0.6,
+    "earnings-roulette": 0.41,
+    "cutting-winners": 0.73,
+    "revenge": 0.81
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1147,
+   "trades": 67,
+   "planted": {
+    "earnings-roulette": 0.39,
+    "cutting-winners": 0.7
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1148,
+   "trades": 86,
+   "planted": {
+    "earnings-roulette": 0.51
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1149,
+   "trades": 95,
+   "planted": {
+    "closed-panic": 0.55,
+    "earnings-roulette": 0.84,
+    "cutting-winners": 0.9,
+    "revenge": 0.51
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1150,
+   "trades": 75,
+   "planted": {
+    "closed-panic": 0.57,
+    "earnings-roulette": 0.73
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1151,
+   "trades": 93,
+   "planted": {
+    "closed-panic": 0.73
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1152,
+   "trades": 116,
+   "planted": {
+    "closed-chasing": 0.45,
+    "cutting-winners": 0.38,
+    "revenge": 0.96
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1153,
+   "trades": 28,
+   "planted": {
+    "closed-chasing": 0.36
+   },
+   "detected": []
+  },
+  {
+   "seed": 1154,
+   "trades": 92,
+   "planted": {
+    "earnings-roulette": 0.69,
+    "cutting-winners": 0.92
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1155,
+   "trades": 159,
+   "planted": {
+    "closed-chasing": 0.37,
+    "cutting-winners": 0.74
+   },
+   "detected": [
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1156,
+   "trades": 109,
+   "planted": {
+    "earnings-roulette": 0.62,
+    "revenge": 0.77
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1157,
+   "trades": 177,
+   "planted": {
+    "revenge": 0.62
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1158,
+   "trades": 138,
+   "planted": {
+    "closed-panic": 0.9,
+    "earnings-roulette": 0.86
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1159,
+   "trades": 134,
+   "planted": {
+    "closed-panic": 0.83
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1160,
+   "trades": 152,
+   "planted": {
+    "closed-chasing": 0.55
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1161,
+   "trades": 104,
+   "planted": {
+    "earnings-roulette": 0.87
+   },
+   "detected": []
+  },
+  {
+   "seed": 1162,
+   "trades": 235,
+   "planted": {
+    "closed-chasing": 0.56,
+    "revenge": 0.88
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1163,
+   "trades": 167,
+   "planted": {
+    "closed-panic": 0.33,
+    "cutting-winners": 0.44,
+    "revenge": 0.76
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1164,
+   "trades": 93,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1165,
+   "trades": 170,
+   "planted": {
+    "closed-chasing": 0.54,
+    "closed-panic": 0.31,
+    "earnings-roulette": 0.57,
+    "cutting-winners": 0.5,
+    "revenge": 0.91
+   },
+   "detected": [
+    "closed-chasing",
+    "earnings-roulette",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1166,
+   "trades": 203,
+   "planted": {
+    "closed-chasing": 0.7,
+    "closed-panic": 0.56,
+    "cutting-winners": 0.43,
+    "revenge": 0.78
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1167,
+   "trades": 45,
+   "planted": {
+    "closed-chasing": 0.75,
+    "cutting-winners": 0.72
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1168,
+   "trades": 115,
+   "planted": {
+    "closed-panic": 0.39,
+    "cutting-winners": 0.42
+   },
+   "detected": []
+  },
+  {
+   "seed": 1169,
+   "trades": 92,
+   "planted": {
+    "closed-chasing": 0.45,
+    "closed-panic": 0.56,
+    "cutting-winners": 0.99,
+    "revenge": 0.66
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1170,
+   "trades": 91,
+   "planted": {
+    "closed-panic": 0.77,
+    "revenge": 0.35
+   },
+   "detected": []
+  },
+  {
+   "seed": 1171,
+   "trades": 87,
+   "planted": {
+    "closed-panic": 0.97,
+    "cutting-winners": 0.42
+   },
+   "detected": []
+  },
+  {
+   "seed": 1172,
+   "trades": 180,
+   "planted": {
+    "closed-chasing": 0.44
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1173,
+   "trades": 54,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1174,
+   "trades": 102,
+   "planted": {
+    "closed-chasing": 0.6,
+    "earnings-roulette": 0.36,
+    "cutting-winners": 0.66
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1175,
+   "trades": 236,
+   "planted": {
+    "revenge": 0.91
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1176,
+   "trades": 151,
+   "planted": {
+    "closed-chasing": 0.85
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1177,
+   "trades": 160,
+   "planted": {
+    "closed-chasing": 0.34,
+    "closed-panic": 0.63,
+    "revenge": 0.79
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1178,
+   "trades": 118,
+   "planted": {
+    "closed-panic": 0.54,
+    "revenge": 0.52
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1179,
+   "trades": 90,
+   "planted": {
+    "cutting-winners": 0.37,
+    "revenge": 0.31
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1180,
+   "trades": 145,
+   "planted": {
+    "earnings-roulette": 0.31,
+    "revenge": 0.31
+   },
+   "detected": []
+  },
+  {
+   "seed": 1181,
+   "trades": 72,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1182,
+   "trades": 162,
+   "planted": {
+    "closed-chasing": 0.5,
+    "cutting-winners": 0.83
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1183,
+   "trades": 156,
+   "planted": {
+    "closed-chasing": 0.53,
+    "earnings-roulette": 0.36,
+    "cutting-winners": 0.31,
+    "revenge": 0.85
+   },
+   "detected": [
+    "closed-chasing",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1184,
+   "trades": 146,
+   "planted": {
+    "closed-chasing": 0.82,
+    "closed-panic": 0.75,
+    "cutting-winners": 0.49
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1185,
+   "trades": 111,
+   "planted": {
+    "closed-panic": 0.73,
+    "cutting-winners": 0.73,
+    "revenge": 0.88
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1186,
+   "trades": 76,
+   "planted": {
+    "closed-chasing": 0.33,
+    "closed-panic": 0.5,
+    "cutting-winners": 0.61
+   },
+   "detected": [
+    "closed-chasing"
+   ]
+  },
+  {
+   "seed": 1187,
+   "trades": 271,
+   "planted": {
+    "closed-chasing": 0.89,
+    "earnings-roulette": 0.82,
+    "revenge": 0.99
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1188,
+   "trades": 60,
+   "planted": {
+    "cutting-winners": 0.32
+   },
+   "detected": []
+  },
+  {
+   "seed": 1189,
+   "trades": 176,
+   "planted": {
+    "earnings-roulette": 0.9
+   },
+   "detected": [
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1190,
+   "trades": 148,
+   "planted": {
+    "closed-panic": 0.86,
+    "earnings-roulette": 0.64,
+    "revenge": 0.36
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1191,
+   "trades": 105,
+   "planted": {
+    "revenge": 0.59
+   },
+   "detected": [
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1192,
+   "trades": 57,
+   "planted": {
+    "closed-chasing": 0.75,
+    "cutting-winners": 0.93
+   },
+   "detected": [
+    "closed-chasing",
+    "cutting-winners"
+   ]
+  },
+  {
+   "seed": 1193,
+   "trades": 90,
+   "planted": {},
+   "detected": []
+  },
+  {
+   "seed": 1194,
+   "trades": 159,
+   "planted": {
+    "closed-panic": 0.65,
+    "cutting-winners": 0.65,
+    "revenge": 0.85
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1195,
+   "trades": 131,
+   "planted": {
+    "cutting-winners": 0.96,
+    "revenge": 0.93
+   },
+   "detected": [
+    "cutting-winners",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1196,
+   "trades": 79,
+   "planted": {
+    "closed-chasing": 0.7,
+    "closed-panic": 0.68,
+    "earnings-roulette": 0.36
+   },
+   "detected": [
+    "closed-chasing",
+    "closed-panic",
+    "earnings-roulette"
+   ]
+  },
+  {
+   "seed": 1197,
+   "trades": 114,
+   "planted": {
+    "closed-panic": 0.98,
+    "earnings-roulette": 0.32
+   },
+   "detected": [
+    "closed-panic"
+   ]
+  },
+  {
+   "seed": 1198,
+   "trades": 83,
+   "planted": {
+    "closed-panic": 0.89,
+    "earnings-roulette": 0.32
+   },
+   "detected": []
+  },
+  {
+   "seed": 1199,
+   "trades": 107,
+   "planted": {
+    "closed-panic": 0.85,
+    "revenge": 0.33
+   },
+   "detected": [
+    "closed-panic",
+    "revenge"
+   ]
+  },
+  {
+   "seed": 1200,
+   "trades": 68,
+   "planted": {
+    "closed-panic": 0.82,
+    "cutting-winners": 0.36
+   },
+   "detected": [
+    "closed-panic",
+    "cutting-winners"
+   ]
+  }
+ ]
+}
