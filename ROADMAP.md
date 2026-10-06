@@ -79,9 +79,9 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 - [ ] **10:00 go/no-go**
 
 ### Block G: Submission (10:00–15:00)
-- [ ] Demo video (2–3 min)
-- [ ] 6-part project description + "Role of the LLM"
-- [ ] README with architecture diagram
+- [ ] Demo video (2–3 min); script in docs/SUBMISSION.md
+- [~] 6-part project description + "Role of the LLM" (drafted in docs/SUBMISSION.md; usability numbers to fill)
+- [x] README with architecture diagram
 - [ ] X post: #BitgetHackathon + @Bitget_AI, quoting https://x.com/Bitget_AI/status/2100519318824055159
 - [ ] Google Form submitted: https://forms.gle/GyWZCMCPocgJdJon6
 
