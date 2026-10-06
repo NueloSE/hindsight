@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useStored } from "@/lib/local-store";
 import type { ReviewPayload } from "@/lib/api/payload";
 import { pct, tone, usd } from "@/lib/format";
 import { useDataset } from "./dataset";
@@ -31,29 +32,24 @@ export function VerdictBadge({ f }: { f: Pick<Finding, "status" | "confidence" |
   );
 }
 
-function useRuleState(datasetKey: string, ruleId: string) {
+/** Accept / dismiss choices per dataset and rule, kept in this browser. */
+export function useRuleState(datasetKey: string, ruleId: string) {
+  const [raw, setRaw] = useStored(RULE_STATE_KEY);
   const key = `${datasetKey}:${ruleId}`;
-  const [state, setState] = useState<"accepted" | "dismissed" | null>(null);
-  useEffect(() => {
+  const all = useMemo<Record<string, "accepted" | "dismissed">>(() => {
     try {
-      const all = JSON.parse(localStorage.getItem(RULE_STATE_KEY) ?? "{}");
-      setState(all[key] ?? null);
+      return raw ? JSON.parse(raw) : {};
     } catch {
-      setState(null);
+      return {};
     }
-  }, [key]);
+  }, [raw]);
   const save = (v: "accepted" | "dismissed" | null) => {
-    setState(v);
-    try {
-      const all = JSON.parse(localStorage.getItem(RULE_STATE_KEY) ?? "{}");
-      if (v) all[key] = v;
-      else delete all[key];
-      localStorage.setItem(RULE_STATE_KEY, JSON.stringify(all));
-    } catch {
-      // ignore: choice holds for this visit
-    }
+    const next = { ...all };
+    if (v) next[key] = v;
+    else delete next[key];
+    setRaw(JSON.stringify(next));
   };
-  return [state, save] as const;
+  return [all[key] ?? null, save] as const;
 }
 
 export function RuleCard({ rule, datasetKey }: { rule: Rule; datasetKey: string }) {

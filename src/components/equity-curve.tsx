@@ -5,8 +5,8 @@ import type { TradeRow } from "@/lib/api/payload";
 export function EquityCurve({ trades, height = 140 }: { trades: TradeRow[]; height?: number }) {
   const sorted = [...trades].sort((a, b) => a.exitT - b.exitT);
   if (sorted.length < 2) return null;
-  let eq = 0;
-  const pts = sorted.map((t) => ({ t: t.exitT, v: (eq += t.pnl) }));
+  const pts: { t: number; v: number }[] = [];
+  for (const t of sorted) pts.push({ t: t.exitT, v: (pts.at(-1)?.v ?? 0) + t.pnl });
   const t0 = pts[0].t;
   const t1 = pts.at(-1)!.t;
   const vMin = Math.min(0, ...pts.map((p) => p.v));

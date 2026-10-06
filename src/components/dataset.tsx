@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useHydrated, useStored } from "@/lib/local-store";
 import type { ReviewPayload } from "@/lib/api/payload";
 import type { Fill } from "@/lib/trades/types";
 
@@ -24,42 +25,24 @@ interface DatasetState {
 const Ctx = createContext<DatasetState | null>(null);
 
 export function DatasetProvider({ children }: { children: ReactNode }) {
-  const [dataset, setDataset] = useState<ClientDataset>({ kind: "sample" });
-  const [ready, setReady] = useState(false);
+  const [raw, setRaw] = useStored(STORAGE_KEY);
+  const ready = useHydrated();
 
-  useEffect(() => {
+  const dataset = useMemo<ClientDataset>(() => {
+    if (!raw) return { kind: "sample" };
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as ClientDataset;
-        if (parsed.kind === "fills" && Array.isArray(parsed.fills)) setDataset(parsed);
-      }
+      const parsed = JSON.parse(raw) as ClientDataset;
+      return parsed.kind === "fills" && Array.isArray(parsed.fills) ? parsed : { kind: "sample" };
     } catch {
-      // storage unavailable (private mode, blocked): stay on the sample
+      return { kind: "sample" };
     }
-    setReady(true);
-  }, []);
+  }, [raw]);
 
-  const persist = (d: ClientDataset) => {
-    try {
-      if (d.kind === "sample") localStorage.removeItem(STORAGE_KEY);
-      else localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
-    } catch {
-      // ignore: the dataset still works for this visit
-    }
-  };
-
-  const selectSample = useCallback(() => {
-    const d: ClientDataset = { kind: "sample" };
-    setDataset(d);
-    persist(d);
-  }, []);
-
-  const selectFills = useCallback((fills: Fill[], fileName: string) => {
-    const d: ClientDataset = { kind: "fills", fills, fileName };
-    setDataset(d);
-    persist(d);
-  }, []);
+  const selectSample = useCallback(() => setRaw(null), [setRaw]);
+  const selectFills = useCallback(
+    (fills: Fill[], fileName: string) => setRaw(JSON.stringify({ kind: "fills", fills, fileName } satisfies ClientDataset)),
+    [setRaw],
+  );
 
   const wire = useMemo(() => (dataset.kind === "sample" ? { kind: "sample" as const } : { kind: "fills" as const, fills: dataset.fills }), [dataset]);
 
@@ -85,13 +68,10 @@ export function useReview(): { data: ReviewPayload | null; error: string | null;
     error: null,
   });
 
+  const cached = reviewCache.get(key) ?? null;
+
   useEffect(() => {
-    if (!ready) return;
-    const cached = reviewCache.get(key);
-    if (cached) {
-      setState({ key, data: cached, error: null });
-      return;
-    }
+    if (!ready || reviewCache.has(key)) return;
     let cancelled = false;
     fetch("/api/review", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ dataset: wire }) })
       .then(async (r) => {
@@ -111,6 +91,7 @@ export function useReview(): { data: ReviewPayload | null; error: string | null;
     };
   }, [key, ready, wire]);
 
+  if (cached) return { data: cached, error: null, loading: false };
   const current = state.key === key;
   return { data: current ? state.data : null, error: current ? state.error : null, loading: !current || (!state.data && !state.error) };
 }
