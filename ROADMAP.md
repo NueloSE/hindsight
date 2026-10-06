@@ -32,9 +32,15 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 - rToken premium vs underlying: ~±1% (p5–p95) overnight/weekend, ~±0.1% after-hours.
 
 ### Block B: Trades (10:00–13:00)
-- [ ] Trade data model; fills matched into round trips (FIFO, fees, partial fills)
-- [ ] Sample trader "Tolu" (~120 trades over 6 months on real prices, 5 planted habits)
-- [ ] CSV import (Bitget trade-history export)
+- [x] Trade data model; fills matched into round trips (scale-ins/outs, fees, partial fills, mid-position history)
+- [x] Sample trader "Tolu" (114 trades, Apr–Sep 2026, real prices, 4 habits planted; panic selling deliberately absent)
+- [x] CSV import (Bitget-style export with header aliases, UTC offsets, rToken/BGB fees; Hindsight template)
+
+**Block B notes**
+- Habit 5 changed from "premium paying" to **closed-market panic selling**: premium while closed equals the move since close, so it overlapped chasing. See docs/SPEC.md.
+- Closed-market habits cover overnight + weekend + holiday, not just weekends: COIN/MSTR move with BTC all weekend.
+- Simulator: seeded, ~4 ms per trader; records which habits drove each trade (ground truth for the blind test).
+- Tolu: 61% win rate but winners held 39h for +1.7% avg vs losers 109h for −3.7%: the disposition habit shows in real-price outcomes.
 
 ### Block C: The maths (13:00–17:00)
 - [ ] Replay engine: per-trade fact sheet (P&L, MFE/MAE, exit efficiency, session, weekend hold and Monday gap, premium at entry, earnings/news proximity, mood, relative size, sequence)

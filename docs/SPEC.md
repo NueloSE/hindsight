@@ -39,8 +39,16 @@ Order placement, automated trading, backtesting engines, wallet connections, cry
 | Bitget `bitget-signal` skills | Crypto-side macro and sentiment context (optional) |
 
 ## Habits (S2 set)
-1. **Weekend chasing:** buying rTokens after a large move while the US market is closed
-2. **Earnings roulette:** holding positions through earnings
-3. **Cutting winners early:** low exit efficiency on winning trades vs losers held long
-4. **Revenge trading:** opening a trade soon after a loss, larger than usual
-5. **Premium paying:** buying when the rToken trades well above the underlying reference price
+1. **Weekend chasing:** buying rTokens after a large up-move while the US market is closed
+2. **Weekend panic selling:** selling into a large down-move while the US market is closed and liquidity is thin
+3. **Earnings roulette:** holding positions through earnings
+4. **Cutting winners early:** winners closed fast for small gains while losers are held long (disposition effect)
+5. **Revenge trading:** opening a trade soon after a loss, larger than usual
+
+The habits are chosen to be measurably distinct so the blind accuracy test can score each one separately.
+"Premium paying" was dropped as a habit: while the market is closed the rToken premium is the same quantity as
+the move since close (overlaps weekend chasing), and hourly data is too coarse to measure it cleanly in-session.
+The rToken vs underlying premium is still shown per trade as context.
+
+A **habit** is a repeated behaviour; its **cost** is measured separately against the trader's other trades.
+Hindsight reports a habit only when the behaviour is statistically clear, and says plainly when it has not cost money.
