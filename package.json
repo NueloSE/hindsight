@@ -10,7 +10,8 @@
     "snapshot": "tsx scripts/snapshot.mts",
     "test": "vitest run",
     "typecheck": "next typegen && tsc --noEmit",
-    "blind-test": "tsx scripts/blind-test.mts"
+    "blind-test": "tsx scripts/blind-test.mts",
+    "example-csv": "tsx scripts/example-csv.mts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.84",
