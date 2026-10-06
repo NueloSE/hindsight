@@ -1,5 +1,5 @@
 import { allMarketData } from "../market/data";
-import { HOUR, sessionAt, type Session } from "../market/sessions";
+import { HOUR, lastRegularClose, nyParts, sessionAt, type Session } from "../market/sessions";
 
 export interface TickerGrid {
   ticker: string;
@@ -31,21 +31,18 @@ export function marketGrid(from?: number, to?: number): MarketGrid {
   const hours: number[] = [];
   for (let t = first; t <= end; t += HOUR) hours.push(t);
   const sessions = hours.map(sessionAt);
+  // The last regular close depends only on the hour, so work it out once for every ticker.
+  const closeDates = hours.map((t) => nyParts(lastRegularClose(t)).date);
 
   const tickers: TickerGrid[] = data.map((m) => {
     const price = new Float64Array(hours.length).fill(NaN);
     const moveSinceClose = new Float64Array(hours.length).fill(NaN);
     const bars = new Map(m.rToken1h.map((c) => [c.t, c.o]));
-    const closeByHour = new Map<number, number | null>();
     hours.forEach((t, i) => {
       const p = bars.get(t);
       if (p === undefined) return;
       price[i] = p;
-      let close = closeByHour.get(t);
-      if (close === undefined) {
-        close = m.gap.lastCloseAt(t);
-        closeByHour.set(t, close);
-      }
+      const close = m.gap.closeOn(closeDates[i]);
       if (close) moveSinceClose[i] = p / close - 1;
     });
     return {

@@ -34,6 +34,11 @@ export class GapCalculator {
     return this.dailyClose.get(nyParts(lastRegularClose(ms)).date) ?? null;
   }
 
+  /** The underlying's regular-session close on a New York date (YYYY-MM-DD). */
+  closeOn(date: string): number | null {
+    return this.dailyClose.get(date) ?? null;
+  }
+
   at(ms: number): PriceContext {
     const session = sessionAt(ms);
     const rTokenPrice = priceAt(this.rToken, ms, HOUR, 6 * HOUR);
