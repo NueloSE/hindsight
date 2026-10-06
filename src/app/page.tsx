@@ -32,6 +32,7 @@ export default function Home() {
   const sample = analyze({ kind: "sample" });
   const chase = sample.review.findings.find((f) => f.id === "closed-chasing")!;
   const detected = sample.review.findings.filter((f) => f.status === "detected").length;
+  const ruledOut = sample.review.findings.length - detected;
   const blind = JSON.parse(readFileSync(join(process.cwd(), "data", "blind-test", "results.json"), "utf8")) as BlindResults;
   const strong = blind.byStrength.at(-1)!;
 
@@ -82,7 +83,7 @@ export default function Home() {
             moments like that. Tolu&apos;s rate was <span className="mark num">{pct(chase.metrics.chaseRate, { digits: 0 })}</span>.
           </p>
           <p className="mt-4 border-t border-rule pt-3 text-sm text-muted">
-            {detected} habits found, 1 ruled out. Each one links to the trades that prove it.
+            {detected} habits found, {ruledOut} ruled out. Each one links to the trades that prove it.
           </p>
         </figure>
       </section>
