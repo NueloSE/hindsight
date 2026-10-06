@@ -88,10 +88,9 @@ export function explainCheck(result: CheckResult): Promise<Explanation> {
   const fallback =
     result.verdict === "clear"
       ? "This idea doesn't match any of your costly habits. Your reminder still applies: decide your exit before you enter."
-      : result.hits
-          .filter((h) => h.kind === "violation")
-          .map((h) => `${h.rule.title}: ${h.reason}`)
-          .join(" ");
+      : result.verdict === "caution"
+        ? "No rule is broken, but this trade is much bigger than your usual size. Size is the one thing you fully control."
+        : "This idea runs into a rule built from your own history. Below is what happened the last times you did this. The decision is yours.";
   return grounded(
     `The trader is about to place this trade. In 2–4 short sentences, tell them which of their own rules it matches (if any)
 and what their history in similar situations shows. End by reminding them the decision is theirs.`,

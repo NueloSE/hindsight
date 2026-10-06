@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { ReviewPayload, TradeRow } from "@/lib/api/payload";
-import { dateTime, hours, pct, SESSION_NAME, tone, usd } from "@/lib/format";
+import { dateTime, hours, pct, retTone, SESSION_NAME, tone, usd } from "@/lib/format";
 
 type Finding = ReviewPayload["findings"][number];
 type SortKey = "no" | "pnl" | "ret" | "cost" | "holdHours";
@@ -96,7 +96,7 @@ export function TradeTable({ trades, findings, initialHabit }: { trades: TradeRo
                 <td className="num px-2 py-2 text-right">{hours(t.holdHours)}</td>
                 <td className="num px-2 py-2 text-right">{usd(t.cost)}</td>
                 <td className={`num px-2 py-2 text-right ${tone(t.pnl)}`}>{usd(t.pnl, { sign: true })}</td>
-                <td className={`num px-2 py-2 text-right ${tone(t.ret)}`}>{pct(t.ret, { sign: true })}</td>
+                <td className={`num px-2 py-2 text-right ${retTone(t.ret)}`}>{pct(t.ret, { sign: true })}</td>
                 <td className="px-2 py-2 text-xs text-muted">{t.habits.map((h) => titles[h]?.split(",")[0]).join(" · ")}</td>
               </tr>
             ))}

@@ -50,4 +50,6 @@ export const SESSION_NAME: Record<string, string> = {
   holiday: "Market holiday",
 };
 
-export const tone = (x: number) => (x > 0 ? "text-gain" : x < 0 ? "text-loss" : "text-muted");
+/** Colour for a signed value. `eps` treats values that display as zero as neutral (e.g. 5e-4 for returns shown to 0.1%). */
+export const tone = (x: number, eps = 0) => (x > eps ? "text-gain" : x < -eps ? "text-loss" : "text-muted");
+export const retTone = (x: number) => tone(x, 5e-4);
