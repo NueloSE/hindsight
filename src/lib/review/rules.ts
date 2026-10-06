@@ -155,7 +155,7 @@ function revengeRule(_f: HabitFinding, facts: TradeFacts[]): Rule {
   return {
     id: "revenge",
     title: "No oversized trades after a loss",
-    text: `For ${REVENGE_WINDOW_HOURS} hours after closing a losing trade, never size above ${REVENGE_SIZE_CAP}× your normal position ($${normal.toFixed(0)}).`,
+    text: `For ${REVENGE_WINDOW_HOURS} hours after closing a losing trade, never size above ${REVENGE_SIZE_CAP}× your normal position ($${normal.toLocaleString("en-US", { maximumFractionDigits: 0 })}).`,
     params: { windowHours: REVENGE_WINDOW_HOURS, sizeCap: REVENGE_SIZE_CAP, normalSize: normal },
     whatIf: evaluate(
       facts,

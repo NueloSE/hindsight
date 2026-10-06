@@ -47,7 +47,8 @@ export const HABIT_TITLES: Record<HabitId, string> = {
 };
 
 const pctText = (x: number, digits = 1) => `${x >= 0 ? "+" : ""}${(x * 100).toFixed(digits)}%`;
-const money = (x: number) => `${x < 0 ? "-" : ""}$${Math.abs(x).toFixed(0)}`;
+const money = (x: number) => `${x < 0 ? "−" : ""}$${Math.abs(x).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+const madeOrLost = (x: number) => (x < 0 ? `lost ${money(-x)}` : `made ${money(x)}`);
 
 function verdict(p: number, enoughData: boolean, effectOk: boolean): Pick<HabitFinding, "status" | "confidence" | "watching"> {
   if (!enoughData) return { status: "insufficient-data", confidence: null, watching: false };
@@ -182,7 +183,7 @@ function detectEarnings(facts: TradeFacts[], from: number, to: number): HabitFin
   const cost = costOf(held, facts);
   const summary =
     v.status === "detected"
-      ? `You held ${k} trades through an earnings report; with your usual holding times chance would give about ${expected.toFixed(1)}. Those trades swung ${pctText(metrics.avgAbsReturn).replace("+", "±")} on average vs ${pctText(metrics.otherAvgAbsReturn).replace("+", "±")} for your other trades, and made ${money(cost!.pnl)} in total.`
+      ? `You held ${k} trades through an earnings report; with your usual holding times chance would give about ${expected.toFixed(1)}. Those trades swung ${pctText(metrics.avgAbsReturn).replace("+", "±")} on average vs ${pctText(metrics.otherAvgAbsReturn).replace("+", "±")} for your other trades, and ${madeOrLost(cost!.pnl)} in total.`
       : v.status === "insufficient-data"
         ? `Not enough trades to judge earnings behaviour yet.`
         : `No sign of earnings gambling: ${k} trades crossed an earnings report, about what your holding times would give by chance (${expected.toFixed(1)}).`;
@@ -261,7 +262,7 @@ function detectRevenge(facts: TradeFacts[]): HabitFinding {
   };
   const summary =
     v.status === "detected"
-      ? `${afterLoss.length} times you opened a new trade within ${REVENGE_WINDOW_HOURS}h of closing a loss, and those trades were ${ratio.toFixed(1)}× your usual size (median ${money(metrics.medianSizeAfterLoss)} vs ${money(metrics.medianSizeOtherwise)}). They made ${money(cost!.pnl)} in total.`
+      ? `${afterLoss.length} times you opened a new trade within ${REVENGE_WINDOW_HOURS}h of closing a loss, and those trades were ${ratio.toFixed(1)}× your usual size (median ${money(metrics.medianSizeAfterLoss)} vs ${money(metrics.medianSizeOtherwise)}). Together they ${madeOrLost(cost!.pnl)}.`
       : v.status === "insufficient-data"
         ? `Not enough trades right after a loss to judge.`
         : `No sign of revenge trading: trades right after a loss are your normal size.`;
