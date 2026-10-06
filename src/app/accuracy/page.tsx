@@ -34,7 +34,7 @@ export default function AccuracyPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 pb-20">
-      <div className="grid gap-10 md:grid-cols-[1.3fr_1fr]">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div>
           <p className="text-sm text-muted">Blind accuracy test</p>
           <h1 className="mt-2 font-serif text-4xl font-medium tracking-tight sm:text-5xl">How we know it works</h1>
@@ -65,7 +65,7 @@ export default function AccuracyPage() {
         </dl>
       </div>
 
-      <section className="mt-14 grid gap-10 md:grid-cols-[1fr_2fr]">
+      <section className="mt-14 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <h2 className="font-serif text-2xl font-medium">The method</h2>
         <ol className="divide-y divide-rule border-y border-rule">
           {[
@@ -138,7 +138,7 @@ export default function AccuracyPage() {
         </ul>
       </section>
 
-      <section className="mt-14 grid gap-10 md:grid-cols-[1fr_2fr]">
+      <section className="mt-14 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <h2 className="font-serif text-2xl font-medium">What this does and doesn&apos;t show</h2>
         <div className="space-y-4 leading-relaxed">
           <p>

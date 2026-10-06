@@ -21,7 +21,7 @@ export function SiteHeader() {
         <Link href="/" className="font-serif text-xl font-semibold tracking-tight">
           Hindsight
         </Link>
-        <nav aria-label="Main" className="-mx-1 flex flex-1 gap-1 overflow-x-auto text-sm">
+        <nav aria-label="Main" className="-mx-1 flex min-w-0 flex-1 gap-1 overflow-x-auto text-sm">
           {NAV.map((n) => {
             const active = path === n.href || path.startsWith(`${n.href}/`);
             return (

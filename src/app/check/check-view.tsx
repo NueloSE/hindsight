@@ -107,7 +107,7 @@ export function CheckView() {
   const reminders = r?.hits.filter((h) => h.kind === "reminder") ?? [];
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 pb-20 md:grid-cols-[1fr_20rem]">
+    <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 pb-20 md:grid-cols-[minmax(0,1fr)_20rem]">
       <div>
         <h1 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Check a trade</h1>
         <p className="mt-3 max-w-xl text-muted">

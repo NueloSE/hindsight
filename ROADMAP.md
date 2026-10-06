@@ -64,7 +64,7 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 
 ### Block E: Product polish (21:00–01:00)
 - [x] Landing, import, dashboard, trade detail chart, patterns, rules, check, chat
-- [~] Empty / loading / error states, mobile (states done; mobile pass pending)
+- [x] Empty / loading / error states, mobile (checked at 500px; dark mode checked)
 - [x] Demo mode runs entirely from snapshots
 
 **Block D/E notes**

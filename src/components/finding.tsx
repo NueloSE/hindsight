@@ -156,7 +156,7 @@ export function FindingSection({ f, rule, datasetKey }: { f: Finding; rule?: Rul
   const detected = f.status === "detected";
   const shown = f.evidenceNos.slice(0, 12);
   return (
-    <section id={f.id} className="grid gap-6 border-t border-rule py-8 md:grid-cols-[1fr_22rem]">
+    <section id={f.id} className="grid grid-cols-1 gap-6 border-t border-rule py-8 md:grid-cols-[minmax(0,1fr)_22rem]">
       <div>
         <VerdictBadge f={f} />
         <h3 className={`mt-2 font-serif text-2xl font-medium tracking-tight ${detected ? "" : "text-muted"}`}>{f.title}</h3>

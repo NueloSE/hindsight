@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-14 md:grid-cols-[1.15fr_1fr] md:pt-20">
+      <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-14 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:pt-20">
         <div>
           <p className="text-sm text-muted">Post-trade review for Bitget rToken traders</p>
           <h1 className="mt-4 font-serif text-5xl font-medium leading-[1.05] tracking-tight sm:text-6xl">
@@ -114,7 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[1fr_2fr]">
+      <section className="mx-auto grid max-w-6xl gap-10 px-4 py-16 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <div>
           <h2 className="font-serif text-3xl font-medium tracking-tight">How it works</h2>
           <p className="mt-3 text-muted">

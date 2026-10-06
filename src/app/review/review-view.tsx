@@ -46,7 +46,7 @@ export function ReviewView() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-20">
-      <header className="grid gap-8 py-10 md:grid-cols-[1.2fr_1fr] md:items-end">
+      <header className="grid grid-cols-1 gap-8 py-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-end">
         <div>
           <p className="text-sm text-muted">
             {data.dataset === "sample" ? "Sample trader · simulated trades on real 2026 prices" : `Your trades · ${dataset.kind === "fills" ? dataset.fileName : ""}`}
