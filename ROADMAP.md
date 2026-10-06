@@ -56,16 +56,22 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 - Not yet in the fact sheet: market mood (Bitget data MCP down). Revisit if it recovers.
 
 ### Block D: The AI layer (17:00–21:00)
-- [ ] Habit explanations with cited evidence trades
-- [ ] Rulebook: accept/reject, "if you'd followed this rule" what-if
-- [ ] Pre-trade check: plain-language idea → verdict + evidence → human decides (logged)
-- [ ] Chat with tools over trades and market data
-- [ ] Grounding check: AI never states a number the code didn't compute (~10 test questions)
+- [x] Habit explanations with cited evidence trades
+- [x] Rulebook: accept/reject, "if you'd followed this rule" what-if
+- [x] Pre-trade check: plain-language idea → verdict + evidence → human decides (logged)
+- [x] Chat with tools over trades and market data
+- [~] Grounding check: AI never states a number the code didn't compute (~10 test questions). Checker built and unit-tested, enforced on coaching and shown per chat answer; live eval waits on OPENAI_API_KEY
 
 ### Block E: Product polish (21:00–01:00)
-- [ ] Landing, import, dashboard, trade detail chart, patterns, rules, check, chat
-- [ ] Empty / loading / error states, mobile
-- [ ] Demo mode runs entirely from snapshots
+- [x] Landing, import, dashboard, trade detail chart, patterns, rules, check, chat
+- [~] Empty / loading / error states, mobile (states done; mobile pass pending)
+- [x] Demo mode runs entirely from snapshots
+
+**Block D/E notes**
+- AI Gateway needs a card on file; user chose their own OpenAI key instead (gpt-6.1-sol coach, gpt-6-luna parser). One-line switch back to Qwen in src/lib/ai/models.ts. Qwen use does not affect S2 judging.
+- Every AI path falls back to computed text without a key; the product works fully offline from snapshots.
+- On real prices Tolu's rules mostly cost a little return but cut risk (drawdown $1,084 → $969–$1,039; stop-loss worst trade −17.9% → −3.2%). Rule cards report both honestly.
+- Design: editorial "case file" direction, docs/BRAND.md.
 
 ### Block F: Usability testing (Oct 7, 07:00–10:00)
 - [ ] 5–10 testers, 3 tasks each; completion rate, time to first insight, quotes
