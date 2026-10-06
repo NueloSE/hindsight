@@ -52,8 +52,8 @@ async function grounded(prompt: string, facts: unknown, fallback: string, maxCha
   return { text: fallback, source: "computed", rejected: lastRejected };
 }
 
-export function explainHabit(finding: HabitFinding, rule: Rule | undefined): Promise<Explanation> {
-  const facts = {
+export function habitFacts(finding: HabitFinding, rule: Rule | undefined) {
+  return {
     habit: finding.title,
     status: finding.status,
     confidence: finding.confidence,
@@ -62,6 +62,10 @@ export function explainHabit(finding: HabitFinding, rule: Rule | undefined): Pro
     rule: rule ? { title: rule.title, text: rule.text, whatIf: rule.whatIf } : null,
     computedSummary: finding.summary,
   };
+}
+
+export function explainHabit(finding: HabitFinding, rule: Rule | undefined): Promise<Explanation> {
+  const facts = habitFacts(finding, rule);
   return grounded(
     `Explain this finding about the trader's habit in 2–3 short sentences: what they do, what it has (or hasn't) cost them,
 and, if there is a rule, the honest trade-off of following it (money and risk).`,
@@ -70,9 +74,9 @@ and, if there is a rule, the honest trade-off of following it (money and risk).`
   );
 }
 
-export function explainCheck(result: CheckResult): Promise<Explanation> {
+export function checkFacts(result: CheckResult) {
   const c = result.context;
-  const facts = {
+  return {
     idea: result.idea,
     verdict: result.verdict,
     marketClosed: c.marketClosed,
@@ -85,6 +89,10 @@ export function explainCheck(result: CheckResult): Promise<Explanation> {
     hits: result.hits.map((h) => ({ rule: h.rule.title, kind: h.kind, reason: h.reason, history: h.history })),
     similarTrades: result.similarStats,
   };
+}
+
+export function explainCheck(result: CheckResult): Promise<Explanation> {
+  const facts = checkFacts(result);
   const fallback =
     result.verdict === "clear"
       ? "This idea doesn't match any of your costly habits. Your reminder still applies: decide your exit before you enter."
@@ -106,8 +114,10 @@ const IdeaSchema = z.object({
 });
 export type ParsedIdea = z.infer<typeof IdeaSchema>;
 
-/** Plain-language trade idea → fields. Falls back to simple pattern matching without a model. */
+/** Plain-language trade idea → fields. Clear phrasings are parsed locally; the model handles the rest. */
 export async function parseIdea(text: string): Promise<ParsedIdea> {
+  const local = parseIdeaLocally(text);
+  if (local.ticker && local.side) return local;
   if (aiConfigured()) {
     try {
       const { output } = await generateText({
@@ -117,12 +127,12 @@ export async function parseIdea(text: string): Promise<ParsedIdea> {
 Map company names and rToken names to the ticker. usd is the dollar/USDT amount if stated, else null. Use null when unsure.`,
         prompt: text,
       });
-      return output;
+      return { ticker: output.ticker ?? local.ticker, side: output.side ?? local.side, usd: output.usd ?? local.usd };
     } catch {
       // fall through to the rule-based parser
     }
   }
-  return parseIdeaLocally(text);
+  return local;
 }
 
 export function parseIdeaLocally(text: string): ParsedIdea {

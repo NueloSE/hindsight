@@ -60,7 +60,7 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 - [x] Rulebook: accept/reject, "if you'd followed this rule" what-if
 - [x] Pre-trade check: plain-language idea → verdict + evidence → human decides (logged)
 - [x] Chat with tools over trades and market data
-- [~] Grounding check: AI never states a number the code didn't compute (~10 test questions). Checker built and unit-tested, enforced on coaching and shown per chat answer; live eval waits on OPENAI_API_KEY
+- [x] Grounding check: AI never states a number the code didn't compute. Coach eval (scripts/eval-coach.mts, 10 questions): **10/10 grounded, 10/10 used tools, 0 invalid citations**. Sample coaching pre-generated and fingerprinted (data/coaching).
 
 ### Block E: Product polish (21:00–01:00)
 - [x] Landing, import, dashboard, trade detail chart, patterns, rules, check, chat

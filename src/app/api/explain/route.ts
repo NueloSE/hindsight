@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { explainHabit, type Explanation } from "@/lib/ai/coach";
+import { cachedExplanation, habitKey } from "@/lib/ai/cache";
+import { explainHabit, habitFacts, type Explanation } from "@/lib/ai/coach";
 import { badRequest, parseDataset } from "@/lib/api/dataset";
 import { analyze } from "@/lib/review/analyze";
 import { HABITS } from "@/lib/sim/generate";
@@ -20,8 +21,13 @@ export async function POST(req: Request) {
   if (!finding) return badRequest("Unknown habit.", 404);
 
   const key = parsed.data.habit;
-  if (dataset.kind === "sample" && sampleCache.has(key)) return Response.json(sampleCache.get(key));
-  const explanation = await explainHabit(finding, a.rules.find((r) => r.id === finding.id));
+  const rule = a.rules.find((r) => r.id === finding.id);
+  if (dataset.kind === "sample") {
+    const stored = cachedExplanation(habitKey(key), habitFacts(finding, rule));
+    if (stored) return Response.json(stored);
+    if (sampleCache.has(key)) return Response.json(sampleCache.get(key));
+  }
+  const explanation = await explainHabit(finding, rule);
   if (dataset.kind === "sample" && explanation.source === "ai") sampleCache.set(key, explanation);
   return Response.json(explanation);
 }

@@ -42,6 +42,10 @@ describe("checkGrounding", () => {
     expect(r.unsupported).toEqual(["$2,000", "12.5%"]);
   });
 
+  it("reads thousands separators in text facts such as the user's question", () => {
+    expect(checkGrounding("Your $1,000 idea is 0.7× your usual size.", ["Should I buy $1,000 of rMSTR?", { sizeVsNormal: 0.71 }]).ok).toBe(true);
+  });
+
   it("rejects numbers stated at a precision the facts don't support", () => {
     expect(checkGrounding("Your chase rate was 35%.", facts).ok).toBe(false);
     expect(checkGrounding("Your chase rate was 33.8%.", facts).ok).toBe(true);

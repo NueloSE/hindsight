@@ -11,7 +11,9 @@
     "test": "vitest run",
     "typecheck": "next typegen && tsc --noEmit",
     "blind-test": "tsx scripts/blind-test.mts",
-    "example-csv": "tsx scripts/example-csv.mts"
+    "example-csv": "tsx scripts/example-csv.mts",
+    "eval-coach": "tsx --env-file=.env.local scripts/eval-coach.mts",
+    "coach-cache": "tsx --env-file=.env.local scripts/coach-cache.mts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.84",

@@ -1,0 +1,51 @@
+{
+ "habit:closed-chasing": {
+  "fingerprint": "14728a5c12b807df",
+  "explanation": {
+   "text": "You made 25 of your 68 closed-market buys after the rToken had already risen at least 1.5% since the last close. Those trades made money overall, so this habit did not cost you money in this history. The rule’s test skipped those buys, giving up their profits while reducing your largest peak-to-trough loss—but leaving your worst trade unchanged.",
+   "source": "ai"
+  }
+ },
+ "habit:earnings-roulette": {
+  "fingerprint": "68106bb704663803",
+  "explanation": {
+   "text": "You held 9 trades through earnings reports, and those trades lost money overall. Following the rule to close before earnings would have left you slightly worse off financially. It would have reduced your largest overall decline, but it would not have improved your worst trade.",
+   "source": "ai"
+  }
+ },
+ "habit:cutting-winners": {
+  "fingerprint": "c7e15602e8b25c55",
+  "explanation": {
+   "text": "You hold losers for a median of 84 hours versus 28 hours for winners—3 times longer. No overall dollar cost is established for this habit, and your winners fell on average over the 24 hours after exit, so early exits did not leave gains behind on average. The tested −3.0% stop would have left you worse off in dollars but reduced your worst loss and peak-to-trough decline, assuming it filled at the stop price.",
+   "source": "ai"
+  }
+ },
+ "habit:revenge": {
+  "fingerprint": "33b3f60d569c98e1",
+  "explanation": {
+   "text": "You opened 30 trades within 12 hours of a loss, typically at 1.8× your usual size. Those trades made $439, so this habit did not cost you money in this history. Following the size cap after a loss would have meant less profit but a smaller drop from your account’s high point—not a smaller percentage loss on your worst trade.",
+   "source": "ai"
+  }
+ },
+ "check:MSTR:buy:1500:1791086400000": {
+  "fingerprint": "030730438ef6e021",
+  "explanation": {
+   "text": "This buy goes against your “Don't chase while Wall Street sleeps” rule: the market is closed, and MSTR is already up 2.4% since the last close. Your 15 similar trades won 60% of the time but had a negative average return; your 25 violations of this rule were profitable overall, so breaking it did not cost you money overall. Your “Cut losers at −3.0%” rule is a reminder to plan your exit, not something this entry already satisfies. The decision is yours.",
+   "source": "ai"
+  }
+ },
+ "check:NVDA:buy:1200:1787670000000": {
+  "fingerprint": "1fc7bfe39e13e12f",
+  "explanation": {
+   "text": "Your NVDA buy matches a past habit, but conflicts with your “Be flat before earnings” rule: earnings are 46.5 hours away. You lost money overall across 8 past violations of that rule; your 5 similar trades had a 40% win rate and a positive average return. Your “Cut losers at −3.0%” rule is also a reminder to plan your exit. The decision is yours.",
+   "source": "ai"
+  }
+ },
+ "check:TSLA:buy:1000:1788973200000": {
+  "fingerprint": "6f4d65c1ac215a4a",
+  "explanation": {
+   "text": "Your “Cut losers at −3.0%” rule applies as an exit reminder, not a reason to buy. Of your 15 similar trades, most won, but your average return was negative; there’s no evidence here that this exit rule saved or cost you money. The decision is yours.",
+   "source": "ai"
+  }
+ }
+}

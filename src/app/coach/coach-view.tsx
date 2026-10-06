@@ -61,14 +61,14 @@ function Prose({ text }: { text: string }) {
   );
 }
 
-function AssistantMessage({ m, done }: { m: UIMessage; done: boolean }) {
+function AssistantMessage({ m, done, question }: { m: UIMessage; done: boolean; question: string }) {
   const text = m.parts.map((p) => (p.type === "text" ? p.text : "")).join("");
   const tools = m.parts.filter((p) => p.type.startsWith("tool-")) as { type: string; state?: string; output?: unknown }[];
   const grounding = useMemo(() => {
     if (!done || !text) return null;
     const outputs = tools.map((t) => t.output).filter(Boolean);
-    return checkGrounding(text, outputs);
-  }, [done, text, tools]);
+    return checkGrounding(text, [question, outputs]); // the user's own numbers are allowed
+  }, [done, text, tools, question]);
 
   return (
     <div>
@@ -120,7 +120,7 @@ export function CoachView() {
               {m.parts.map((p, j) => (p.type === "text" ? <p key={j}>{p.text}</p> : null))}
             </div>
           ) : (
-            <AssistantMessage key={m.id} m={m} done={!busy || i < messages.length - 1} />
+            <AssistantMessage key={m.id} m={m} done={!busy || i < messages.length - 1} question={messages[i - 1]?.parts.map((p) => (p.type === "text" ? p.text : "")).join("") ?? ""} />
           ),
         )}
         {status === "submitted" && messages.at(-1)?.role === "user" && <p className="h-5 w-48 animate-pulse rounded-sm bg-rule" aria-label="Thinking" />}

@@ -37,6 +37,8 @@ Full method and limits: /accuracy. Reproducible: `pnpm blind-test --final`.
 
 *Rule what-ifs (observed, sample trader on real prices).* Tolu's 106 trades: 63% win rate, −$55 net, but +$290 before $344 of fees. On real 2026 prices the rules trade a little return for lower risk, and Hindsight says so: e.g. a −3% stop would have cost $543 but cut the worst trade from −17.9% to −3.2% and max drawdown from $1,084 to $969.
 
+*AI grounding (observed).* 10 realistic questions to the chat coach (e.g. "Which habit has cost me the most?", "Should I buy $1,000 of rMSTR right now?"): **10/10 answers had every number traceable to tool outputs, 10/10 looked data up first, 0 invalid trade citations.** Reproducible: `pnpm eval-coach`.
+
 *Usability (observed).* [FILL after testing: N testers, task completion rate for (1) find the costliest habit (2) accept a rule (3) check a trade idea; median time to first insight; 1–2 quotes.]
 
 *Distribution targets (targets, not yet observed).* 50 traders importing their own Bitget history in month one via the Bitget AI community and X build-in-public posts; ≥40% of them accepting at least one rule; ≥25% running a pre-trade check in their second week.

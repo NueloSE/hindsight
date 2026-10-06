@@ -21,7 +21,7 @@ export function collectNumbers(value: unknown, out: number[] = []): number[] {
       out.push(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate(), d.getUTCHours());
     }
   } else if (typeof value === "string") {
-    for (const m of value.matchAll(/-?\d+(?:\.\d+)?/g)) out.push(Number(m[0]));
+    for (const m of value.matchAll(/-?\d{1,3}(?:,\d{3})+(?:\.\d+)?|-?\d+(?:\.\d+)?/g)) out.push(Number(m[0].replace(/,/g, "")));
   } else if (Array.isArray(value)) {
     value.forEach((v) => collectNumbers(v, out));
   } else if (value && typeof value === "object") {

@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { explainCheck, parseIdea } from "@/lib/ai/coach";
+import { cachedExplanation, checkKey } from "@/lib/ai/cache";
+import { checkFacts, explainCheck, parseIdea } from "@/lib/ai/coach";
 import { badRequest, parseDataset } from "@/lib/api/dataset";
 import { isSupported, UNIVERSE } from "@/lib/market/universe";
 import { analyze } from "@/lib/review/analyze";
@@ -35,7 +36,8 @@ export async function POST(req: Request) {
   const a = analyze(parseDataset(b.dataset));
   const context = await contextAt(ticker, at);
   const result = checkIdea({ ticker, side, usd, at }, context, a.rules, a.facts);
-  const explanation = await explainCheck(result);
+  const stored = b.at && parseDataset(b.dataset).kind === "sample" ? cachedExplanation(checkKey(ticker, side, usd, at), checkFacts(result)) : null;
+  const explanation = stored ?? (await explainCheck(result));
   const noById = new Map(a.facts.map((f, i) => [f.trade.id, i + 1]));
 
   return Response.json({
