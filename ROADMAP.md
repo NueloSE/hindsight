@@ -16,14 +16,20 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 
 ### Block A: Foundations and market data (Oct 6, 07:30–10:00)
 - [x] Next.js 16 app scaffolded in `hindsight/`, Node 22 pinned
-- [ ] Product spec and target user (`docs/SPEC.md`)
-- [ ] Bitget public REST client: rToken spot candles, stock perps candles, funding
-- [ ] Yahoo client: underlying stock daily/hourly history incl. extended hours
-- [ ] Bitget MCP data client (news, earnings, fear & greed), fails gracefully
-- [ ] US market session tagging (regular / pre / post / overnight / weekend / holiday)
-- [ ] rToken vs underlying gap calculation
-- [ ] Snapshot cache for ~10 stocks so the demo works offline
-- [ ] Deployed live on Vercel
+- [x] Product spec and target user (`docs/SPEC.md`)
+- [x] Bitget public REST client: rToken spot candles, stock perps candles, funding
+- [x] Yahoo client: underlying stock daily/hourly history incl. extended hours
+- [x] Bitget MCP data client (news, earnings, fear & greed), fails gracefully
+- [x] US market session tagging (regular / pre / post / overnight / weekend / holiday)
+- [x] rToken vs underlying gap calculation
+- [x] Snapshot cache for ~10 stocks so the demo works offline
+- [x] Deployed live on Vercel: https://hindsight-puce.vercel.app
+
+**Block A notes**
+- Bitget data MCP returned 503 all morning (Oct 6). Client degrades gracefully; earnings come from Nasdaq's public calendar instead.
+- 11 instruments snapshotted: rToken 1h from 2026-03-02, 1d from 2025-06; stock 1h incl. pre/post, 1d; 27 earnings events.
+- rToken weekend liquidity is ~1000x thinner than regular hours; illiquid names (SPY, PLTR) skip many weekend hours entirely.
+- rToken premium vs underlying: ~±1% (p5–p95) overnight/weekend, ~±0.1% after-hours.
 
 ### Block B: Trades (10:00–13:00)
 - [ ] Trade data model; fills matched into round trips (FIFO, fees, partial fills)
