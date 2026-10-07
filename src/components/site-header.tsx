@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDataset } from "./dataset";
+import { LogoMark } from "./logo-mark";
 
 const NAV = [
   { href: "/review", label: "Review" },
@@ -20,7 +21,8 @@ export function SiteHeader() {
   return (
     <header className="border-b border-rule bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/75 sticky top-0 z-20">
       <div className="mx-auto flex max-w-6xl items-center gap-6 px-4 py-3">
-        <Link href="/" className="font-serif text-xl font-semibold tracking-tight">
+        <Link href="/" className="flex shrink-0 items-center gap-2 font-serif text-xl font-semibold tracking-tight">
+          <LogoMark size={22} />
           Hindsight
         </Link>
         <nav aria-label="Main" className="-mx-1 flex min-w-0 flex-1 gap-1 overflow-x-auto text-sm">

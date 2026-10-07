@@ -9,6 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 const newsreader = Newsreader({ variable: "--font-newsreader", subsets: ["latin"], weight: ["500", "600"], style: ["normal", "italic"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hindsight-puce.vercel.app"),
   title: "Hindsight: your trades, reviewed",
   description:
     "AI post-trade review for 24/7 tokenized US stock traders on Bitget. Finds the habits that cost you money, proves them with your own trades, and turns them into rules.",
