@@ -44,21 +44,7 @@ next-env.d.ts
 CLAUDE.md
 demo-video-guide.md
 
-# demo film: local tooling, caches and renders
-video/.venv/
-video/node_modules/
-video/renders/
-video/snaps/
-video/assets/music/
-video/assets/vo/
-video/captures/raw/
-video/.work/
 .work/
-video/assets/voice.wav
-video/assets/vo-samples/
-video/captures/
-video/look/*.png
-video/assets/mix.wav
-video/assets/sfx/*.mp3
-video/assets/sfx/*.wav
-video/assets/events.json
+
+# demo film project: kept local only
+video/
