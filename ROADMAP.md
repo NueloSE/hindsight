@@ -87,6 +87,11 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 
 ---
 
+**Oct 7 changes (from user review)**
+- Landing is general ("Try the live demo" / "Review my trades"); the dataset pill and a demo banner appear only inside the app.
+- Import page has a step-by-step Bitget CSV export guide (web only, Orders → Spot → Order history → Download → CSV; link expires in 7 days).
+- Read-only API-key import is the preferred long-term path; built only once it can be tested with a real key.
+
 ## After S2 (toward Season 3)
 - [ ] Read-only Bitget API-key import (encrypted, deletable)
 - [ ] 2–3 sample traders; full habit library (9+)

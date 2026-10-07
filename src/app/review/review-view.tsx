@@ -49,7 +49,7 @@ export function ReviewView() {
       <header className="grid grid-cols-1 gap-8 py-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-end">
         <div>
           <p className="text-sm text-muted">
-            {data.dataset === "sample" ? "Sample trader · simulated trades on real 2026 prices" : `Your trades · ${dataset.kind === "fills" ? dataset.fileName : ""}`}
+            {data.dataset === "sample" ? "Demo trader" : `Your trades · ${dataset.kind === "fills" ? dataset.fileName : ""}`}
           </p>
           <h1 className="mt-2 font-serif text-4xl font-medium tracking-tight sm:text-5xl">{name} review</h1>
           <p className="mt-3 text-muted">

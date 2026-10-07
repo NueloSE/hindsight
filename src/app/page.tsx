@@ -13,7 +13,7 @@ interface BlindResults {
 }
 
 const STEPS = [
-  { title: "Import", body: "Load your Bitget rToken trade history as a CSV, or start with Tolu, our sample trader." },
+  { title: "Import", body: "Load your Bitget rToken trade history as a CSV, or try the demo with Tolu, a simulated trader." },
   {
     title: "Replay",
     body: "Every trade is replayed hour by hour against real rToken and stock prices: what session it was, how far the rToken had moved since the US close, earnings, what happened after you sold.",
@@ -56,7 +56,7 @@ export default function Home() {
               href="/review"
               className="rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink transition-opacity duration-150 hover:opacity-90"
             >
-              See a sample review
+              Try the live demo
             </Link>
             <Link
               href="/import"
@@ -69,7 +69,7 @@ export default function Home() {
 
         <figure className="self-end rounded-md border border-rule bg-sheet p-6">
           <figcaption className="flex items-baseline justify-between text-xs text-muted">
-            <span>From Tolu&apos;s review</span>
+            <span>Example from the demo</span>
             <span className="num">{sample.facts.length} trades · Apr–Sep 2026</span>
           </figcaption>
           <p className="mt-4 font-serif text-2xl leading-snug">{chase.title}</p>
@@ -83,7 +83,10 @@ export default function Home() {
             moments like that. Tolu&apos;s rate was <span className="mark num">{pct(chase.metrics.chaseRate, { digits: 0 })}</span>.
           </p>
           <p className="mt-4 border-t border-rule pt-3 text-sm text-muted">
-            {detected} habits found, {ruledOut} ruled out. Each one links to the trades that prove it.
+            Tolu is our demo trader: {detected} habits found, {ruledOut} ruled out, each linked to the trades that prove it.{" "}
+            <Link href="/review" className="text-accent underline-offset-2 hover:underline">
+              Open the demo
+            </Link>
           </p>
         </figure>
       </section>

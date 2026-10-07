@@ -40,6 +40,27 @@ export function ImportView() {
           and nothing is stored on the server.
         </p>
 
+        <details open className="mt-8 rounded-md border border-rule bg-sheet p-5 [&_summary::-webkit-details-marker]:hidden">
+          <summary className="cursor-pointer font-medium">How to get this file from Bitget (about 2 minutes)</summary>
+          <ol className="mt-4 space-y-3 text-sm">
+            {[
+              <>Open <span className="font-medium">bitget.com</span> on a computer and log in. The export is only available on the website, not in the app.</>,
+              <>Go to <span className="font-medium">Orders → Spot</span>, then open <span className="font-medium">Order history</span> (or <span className="font-medium">Transactions / fills</span> if you see it).</>,
+              <>Click <span className="font-medium">Download</span>, choose the date range you want reviewed (up to 2 years), and pick <span className="font-medium">CSV</span>.</>,
+              <>Click <span className="font-medium">Generate</span>. When it&apos;s ready, click <span className="font-medium">Download</span>. The link expires after 7 days.</>,
+              <>Drop the file below. Only rToken pairs (like rNVDA/USDT) are reviewed; crypto pairs in the same file are skipped.</>,
+            ].map((step, i) => (
+              <li key={i} className="grid grid-cols-[1.5rem_1fr] gap-2">
+                <span className="num text-muted">{i + 1}.</span>
+                <span className="leading-relaxed">{step}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-4 text-xs text-muted">
+            Coming next: connect a read-only Bitget API key instead of exporting a file. Read-only keys can&apos;t trade or withdraw.
+          </p>
+        </details>
+
         <label
           htmlFor="csv"
           onDragOver={(e) => {
@@ -53,7 +74,7 @@ export function ImportView() {
             const f = e.dataTransfer.files[0];
             if (f) read(f);
           }}
-          className={`mt-8 flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-6 py-14 text-center transition-colors duration-150 ${dragging ? "border-accent bg-sheet" : "border-rule hover:border-ink"}`}
+          className={`mt-6 flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-6 py-14 text-center transition-colors duration-150 ${dragging ? "border-accent bg-sheet" : "border-rule hover:border-ink"}`}
         >
           <span className="font-medium">{file ? file : "Drop a CSV here, or choose a file"}</span>
           <span className="mt-1 text-sm text-muted">Bitget spot trade history export, or the Hindsight template</span>
@@ -119,7 +140,7 @@ export function ImportView() {
           <p className="mt-8 text-sm text-muted">
             Currently reviewing <span className="text-ink">{dataset.fileName}</span>.{" "}
             <button type="button" onClick={selectSample} className="text-accent underline-offset-2 hover:underline">
-              Switch back to the sample trader and forget my file
+              Switch back to the demo trader and forget my file
             </button>
           </p>
         )}
@@ -154,7 +175,7 @@ export function ImportView() {
         <p className="text-muted">
           No file yet?{" "}
           <Link href="/review" onClick={selectSample} className="text-accent underline-offset-2 hover:underline">
-            Explore the sample trader
+            Try the demo trader
           </Link>
           .
         </p>

@@ -14,6 +14,8 @@ const NAV = [
 export function SiteHeader() {
   const path = usePathname();
   const { dataset, ready } = useDataset();
+  // The dataset indicator only makes sense inside the app, not on the landing or method pages.
+  const inApp = ["/review", "/check", "/coach"].some((p) => path === p || path.startsWith(`${p}/`));
 
   return (
     <header className="border-b border-rule bg-paper/90 backdrop-blur supports-[backdrop-filter]:bg-paper/75 sticky top-0 z-20">
@@ -36,12 +38,22 @@ export function SiteHeader() {
             );
           })}
         </nav>
-        <Link
-          href="/import"
-          className="hidden shrink-0 rounded-sm border border-rule px-2.5 py-1 text-sm text-muted transition-colors duration-150 hover:border-ink hover:text-ink sm:block"
-        >
-          {!ready ? "…" : dataset.kind === "sample" ? "Sample: Tolu" : `Your trades: ${dataset.fileName}`}
-        </Link>
+        {inApp ? (
+          <Link
+            href="/import"
+            title={dataset.kind === "sample" ? "Viewing the demo trader. Click to review your own trades." : "Viewing your uploaded trades. Click to change."}
+            className="hidden shrink-0 rounded-sm border border-rule px-2.5 py-1 text-sm text-muted transition-colors duration-150 hover:border-ink hover:text-ink sm:block"
+          >
+            {!ready ? "…" : dataset.kind === "sample" ? "Demo: Tolu · use my trades" : `Your trades: ${dataset.fileName}`}
+          </Link>
+        ) : path === "/import" ? null : (
+          <Link
+            href="/import"
+            className="hidden shrink-0 rounded-sm border border-rule px-2.5 py-1 text-sm text-muted transition-colors duration-150 hover:border-ink hover:text-ink sm:block"
+          >
+            Review my trades
+          </Link>
+        )}
       </div>
     </header>
   );
