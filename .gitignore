@@ -58,3 +58,7 @@ video/assets/voice.wav
 video/assets/vo-samples/
 video/captures/
 video/look/*.png
+video/assets/mix.wav
+video/assets/sfx/*.mp3
+video/assets/sfx/*.wav
+video/assets/events.json

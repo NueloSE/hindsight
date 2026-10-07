@@ -62,14 +62,24 @@ await shot("review", "/review", {
   tiles: page.getByRole("tablist"),
   tileChase: page.getByRole("tab", { name: /Chasing/ }),
   tileCut: page.getByRole("tab", { name: /Cutting winners/ }),
+  tileEarn: page.getByRole("tab", { name: /Holding through earnings/ }),
   tilePanic: page.getByRole("tab", { name: /Panic/ }),
   panel: page.locator("#habit-panel"),
   coachNote: page.locator("#habit-panel p.leading-relaxed").first(),
   evidence: page.locator("#habit-panel ul").first(),
-  chip81: page.locator("#habit-panel").getByRole("link", { name: "#81" }).or(page.locator("#habit-panel ul a").first()),
-  rule: page.locator("#habit-panel").getByText("Proposed rule").locator(".."),
+  rule: page.locator("#habit-panel div.rounded-md.p-4").first(),
   table: page.locator("#trades table"),
   pager: page.getByRole("navigation", { name: "Trade pages" }),
+});
+
+// 2b · Review, earnings habit open (its evidence includes trade #81)
+await page.getByRole("tab", { name: /Holding through earnings/ }).click();
+await page.waitForTimeout(1500);
+await shot("review-earn", "/review#earnings-roulette", {
+  tileEarn: page.getByRole("tab", { name: /Holding through earnings/ }),
+  panel: page.locator("#habit-panel"),
+  evidence: page.locator("#habit-panel ul").first(),
+  chip81: page.locator("#habit-panel").getByRole("link", { name: "#81", exact: true }),
 });
 
 // 3 · Review, cutting winners open (the stop-loss rule)
@@ -77,7 +87,7 @@ await page.getByRole("tab", { name: /Cutting winners/ }).click();
 await page.waitForTimeout(1500);
 await shot("review-cut", "/review#cutting-winners", {
   tileCut: page.getByRole("tab", { name: /Cutting winners/ }),
-  rule: page.locator("#habit-panel").getByText("Proposed rule").locator(".."),
+  rule: page.locator("#habit-panel div.rounded-md.p-4").first(),
   pnlRow: page.locator("#habit-panel dl > div").nth(0),
   worstRow: page.locator("#habit-panel dl > div").nth(1),
   drawdownRow: page.locator("#habit-panel dl > div").nth(2),
@@ -86,7 +96,7 @@ await shot("review-cut", "/review#cutting-winners", {
 await page.getByRole("button", { name: "Add to my rules" }).click();
 await page.waitForTimeout(500);
 await shot("review-cut-added", "/review#cutting-winners", {
-  rule: page.locator("#habit-panel").getByText("Proposed rule").locator(".."),
+  rule: page.locator("#habit-panel div.rounded-md.p-4").first(),
   added: page.getByRole("button", { name: "Accepted" }),
 });
 
