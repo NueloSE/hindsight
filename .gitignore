@@ -54,3 +54,7 @@ video/assets/vo/
 video/captures/raw/
 video/.work/
 .work/
+video/assets/voice.wav
+video/assets/vo-samples/
+video/captures/
+video/look/*.png
