@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useDataset, useReview } from "@/components/dataset";
 import { EquityCurve } from "@/components/equity-curve";
-import { FindingNote, FindingSection } from "@/components/finding";
+import { HabitBoard } from "@/components/habit-board";
 import { TradeTable } from "@/components/trade-table";
 import { day, pct, tone, usd } from "@/lib/format";
 
@@ -91,27 +91,15 @@ export function ReviewView() {
             {detected.length ? `${detected.length} habit${detected.length > 1 ? "s" : ""} found` : "No costly habits found"}
           </h2>
           <p className="text-sm text-muted">
-            {others.length} checked and not found ·{" "}
+            {others.length ? `${others.length} more checked · ` : ""}
             <Link href="/accuracy" className="text-accent underline-offset-2 hover:underline">
               how reliable is this?
             </Link>
           </p>
         </div>
-        {detected.map((f) => (
-          <FindingSection key={f.id} f={f} rule={data.rules.find((r) => r.id === f.id)} datasetKey={datasetKey} />
-        ))}
-        {others.length > 0 && (
-          <div className="border-t border-rule py-8">
-            <h3 className="text-sm text-muted">Checked and not found</h3>
-            <ul className="mt-4 grid gap-8 sm:grid-cols-2">
-              {others.map((f) => (
-                <li key={f.id}>
-                  <FindingNote f={f} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <div className="mt-5">
+          <HabitBoard findings={data.findings} rules={data.rules} datasetKey={datasetKey} />
+        </div>
       </section>
 
       <section aria-labelledby="trades-heading" className="pt-6">

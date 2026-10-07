@@ -8,11 +8,12 @@ import { useDataset } from "@/components/dataset";
 import { checkGrounding } from "@/lib/ai/grounding";
 
 const SUGGESTIONS = [
-  "Which habit has cost me the most?",
-  "Show me my worst trades while the US market was closed",
-  "Why do my earnings trades go badly?",
-  "How accurate is Hindsight?",
-  "Should I buy rNVDA right now?",
+  { group: "Your habits", q: "Which habit has cost me the most?" },
+  { group: "Your trades", q: "Show me my worst trades while the US market was closed" },
+  { group: "Your habits", q: "Why do my earnings trades go badly?" },
+  { group: "Your trades", q: "What happened on my biggest revenge trade?" },
+  { group: "Before you trade", q: "Should I buy rNVDA right now?" },
+  { group: "Trust", q: "How accurate is Hindsight?" },
 ];
 
 const TOOL_LABEL: Record<string, string> = {
@@ -132,11 +133,21 @@ export function CoachView() {
       </div>
 
       {messages.length === 0 && (
-        <ul className="mt-6 flex flex-wrap gap-2">
+        <ul className="mt-8 grid gap-2 sm:grid-cols-2">
           {SUGGESTIONS.map((s) => (
-            <li key={s}>
-              <button type="button" onClick={() => ask(s)} className="rounded-sm border border-rule px-3 py-1.5 text-left text-sm transition-colors duration-150 hover:border-ink">
-                {s}
+            <li key={s.q}>
+              <button
+                type="button"
+                onClick={() => ask(s.q)}
+                className="group flex h-full w-full flex-col rounded-md border border-rule bg-sheet px-4 py-3.5 text-left transition-colors duration-150 hover:border-ink"
+              >
+                <span className="flex justify-between text-xs text-muted">
+                  {s.group}
+                  <span aria-hidden className="text-accent opacity-0 transition-opacity duration-150 group-hover:opacity-100">
+                    Ask →
+                  </span>
+                </span>
+                <span className="mt-1 leading-snug">{s.q}</span>
               </button>
             </li>
           ))}
