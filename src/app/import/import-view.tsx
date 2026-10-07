@@ -7,6 +7,8 @@ import { useDataset } from "@/components/dataset";
 import { UNIVERSE } from "@/lib/market/universe";
 import { importCsv, TEMPLATE_HEADER, type CsvImport } from "@/lib/trades/csv";
 import { matchFills } from "@/lib/trades/match";
+import type { Fill } from "@/lib/trades/types";
+import { BitgetConnect } from "./bitget-connect";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 
@@ -28,6 +30,12 @@ export function ImportView() {
     setResult(importCsv(text, { defaultOffsetMinutes: tzOffset }));
   }
 
+  function fromApi(fills: Fill[], label: string, notes: string[]) {
+    setProblem(null);
+    setFile(label);
+    setResult({ fills, warnings: notes, unsupported: {}, errors: [] });
+  }
+
   const book = result ? matchFills(result.fills) : null;
   const unsupported = result ? Object.entries(result.unsupported) : [];
 
@@ -36,11 +44,40 @@ export function ImportView() {
       <div>
         <h1 className="font-serif text-4xl font-medium tracking-tight sm:text-5xl">Review your trades</h1>
         <p className="mt-3 max-w-xl text-muted">
-          Upload your Bitget spot trade history as a CSV. The file is read in your browser; trades are sent to Hindsight only to be analysed,
-          and nothing is stored on the server.
+          Connect a read-only Bitget API key, or upload your trade history as a CSV. Trades are sent to Hindsight only to be analysed, and
+          nothing is stored on the server.
         </p>
 
-        <details open className="mt-8 rounded-md border border-rule bg-sheet p-5 [&_summary::-webkit-details-marker]:hidden">
+        <section className="mt-8 rounded-md border border-rule bg-sheet p-5">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="font-medium">Connect your Bitget account</h2>
+            <span className="text-xs text-muted">Read-only · last 90 days · beta</span>
+          </div>
+          <details className="mt-3 text-sm [&_summary::-webkit-details-marker]:hidden">
+            <summary className="cursor-pointer text-accent">How to create a read-only API key</summary>
+            <ol className="mt-3 space-y-2">
+              {[
+                <>On bitget.com, open your <span className="font-medium">profile → API Management</span>.</>,
+                <>Choose <span className="font-medium">Create API → System-generated API key</span>.</>,
+                <>Give it a name and make up a <span className="font-medium">passphrase</span> (you&apos;ll enter it here).</>,
+                <>Permissions: tick <span className="font-medium">Read only</span>. Leave trade, withdraw and transfer off.</>,
+                <>Leave the IP whitelist empty, confirm, and copy the <span className="font-medium">secret key</span>: Bitget shows it only once.</>,
+              ].map((step, i) => (
+                <li key={i} className="grid grid-cols-[1.5rem_1fr] gap-2">
+                  <span className="num text-muted">{i + 1}.</span>
+                  <span className="leading-relaxed">{step}</span>
+                </li>
+              ))}
+            </ol>
+          </details>
+          <div className="mt-4">
+            <BitgetConnect onFills={fromApi} />
+          </div>
+        </section>
+
+        <h2 className="mt-10 font-medium">Or upload a CSV <span className="font-normal text-muted">(up to 2 years of history)</span></h2>
+
+        <details className="mt-3 rounded-md border border-rule p-5 [&_summary::-webkit-details-marker]:hidden">
           <summary className="cursor-pointer font-medium">How to get this file from Bitget (about 2 minutes)</summary>
           <ol className="mt-4 space-y-3 text-sm">
             {[
@@ -56,9 +93,6 @@ export function ImportView() {
               </li>
             ))}
           </ol>
-          <p className="mt-4 text-xs text-muted">
-            Coming next: connect a read-only Bitget API key instead of exporting a file. Read-only keys can&apos;t trade or withdraw.
-          </p>
         </details>
 
         <label
@@ -98,7 +132,13 @@ export function ImportView() {
             ) : (
               <>
                 <p className="font-serif text-2xl">
-                  <span className="num">{result.fills.length}</span> fills read, <span className="num">{book.trades.length}</span> complete trades.
+                  {result.fills.length === 0 ? (
+                    "No rToken trades found."
+                  ) : (
+                    <>
+                      <span className="num">{result.fills.length}</span> fills read, <span className="num">{book.trades.length}</span> complete trades.
+                    </>
+                  )}
                 </p>
                 <ul className="mt-3 space-y-1 text-sm text-muted">
                   {book.open.length > 0 && <li>{book.open.length} position(s) still open; they&apos;re shown but not judged.</li>}

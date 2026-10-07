@@ -90,10 +90,11 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 **Oct 7 changes (from user review)**
 - Landing is general ("Try the live demo" / "Review my trades"); the dataset pill and a demo banner appear only inside the app.
 - Import page has a step-by-step Bitget CSV export guide (web only, Orders → Spot → Order history → Download → CSV; link expires in 7 days).
-- Read-only API-key import is the preferred long-term path; built only once it can be tested with a real key.
+- Read-only API-key import built and tested with a real key (Classic account, 0 trades): v3 UTA `/api/v3/trade/fills` with fallback to v2 `/api/v2/spot/trade/fills` on 40084. Both APIs only reach the last 90 days. Fill parsing follows Bitget's documented shapes (via ccxt); not yet tested on an account with real rToken fills.
 
 ## After S2 (toward Season 3)
-- [ ] Read-only Bitget API-key import (encrypted, deletable)
+- [x] Read-only Bitget API-key import (beta; keys used per request, never stored)
+- [ ] Verify API and CSV parsing against an account with real rToken trades
 - [ ] 2–3 sample traders; full habit library (9+)
 - [ ] Rule editing and version history
 - [ ] Outcome feedback loop: logged decisions update rules

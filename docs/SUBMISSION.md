@@ -46,7 +46,8 @@ Full method and limits: /accuracy. Reproducible: `pnpm blind-test --final`.
 **4 · Progress**
 Built and live: market data layer (Bitget public REST for 2,808 rTokens and stock perps, Yahoo Finance for the underlying incl. pre/post market, Nasdaq earnings calendar, Bitget data MCP client with graceful fallback, NYSE session calendar with holidays and early closes, committed snapshots for 11 instruments so the demo runs offline); trade matching and CSV import (Bitget-style export with UTC offsets and rToken-denominated fees); replay engine; five detectors; rulebook with P&L and risk what-ifs; pre-trade check with live and historical context; AI coaching with grounding check; tool-calling chat; review, trade detail, check, coach, import and accuracy pages. 41 automated tests.
 Problems and fixes: the Bitget data MCP backend returned 503 throughout development, so earnings come from Nasdaq and every data path falls back to snapshots. We dropped a planned "premium paying" habit after finding it was statistically the same signal as closed-market chasing. Our first disposition detector required two tests to agree and missed most real cases; we kept the drift protection but relaxed the confirming test, raising detection from 35% to 66% with no new false alarms.
-Next: read-only Bitget API-key import, outcome feedback so logged decisions update the rules, weekly review reports, a study with real traders' histories.
+Also built: read-only Bitget API-key import (handles both Unified and Classic accounts; keys are used per request and never stored).
+Next: outcome feedback so logged decisions update the rules, weekly review reports, a study with real traders' histories.
 Stack: Next.js 16, TypeScript, Vercel; AI SDK 7.
 
 **5 · Deliverables (all in "Submission Materials Link")**
