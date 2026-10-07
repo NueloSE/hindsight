@@ -19,7 +19,10 @@ export function ImportView() {
   const [result, setResult] = useState<CsvImport | null>(null);
   const [problem, setProblem] = useState<string | null>(null);
   const [dragging, setDragging] = useState(false);
+  const [csvText, setCsvText] = useState<string | null>(null);
+  const [offset, setOffset] = useState(0); // Bitget exports in UTC
   const tzOffset = -new Date().getTimezoneOffset();
+  const zone = (m: number) => (m === 0 ? "UTC" : `UTC${m > 0 ? "+" : "−"}${Math.abs(m) / 60}`);
 
   async function read(f: File) {
     setProblem(null);
@@ -27,12 +30,20 @@ export function ImportView() {
     if (f.size > MAX_BYTES) return setProblem("That file is over 5 MB. Export a shorter date range and try again.");
     const text = await f.text();
     setFile(f.name);
-    setResult(importCsv(text, { defaultOffsetMinutes: tzOffset }));
+    setCsvText(text);
+    setOffset(0);
+    setResult(importCsv(text, { defaultOffsetMinutes: 0 }));
+  }
+
+  function changeOffset(m: number) {
+    setOffset(m);
+    if (csvText) setResult(importCsv(csvText, { defaultOffsetMinutes: m }));
   }
 
   function fromApi(fills: Fill[], label: string, notes: string[]) {
     setProblem(null);
     setFile(label);
+    setCsvText(null);
     setResult({ fills, warnings: notes, unsupported: {}, errors: [] });
   }
 
@@ -153,10 +164,24 @@ export function ImportView() {
                     </li>
                   )}
                   {result.errors.length > 0 && <li>{result.errors.length} row(s) couldn&apos;t be read (first: line {result.errors[0].line}, {result.errors[0].message})</li>}
-                  {result.warnings.map((w) => (
-                    <li key={w}>{w}</li>
-                  ))}
+                  {result.warnings
+                    .filter((w) => !w.includes("had no timezone"))
+                    .map((w) => (
+                      <li key={w}>{w}</li>
+                    ))}
                 </ul>
+                {csvText && (result.naiveTimes ?? 0) > 0 && (
+                  <div className="mt-4 flex flex-wrap items-center gap-2 text-sm">
+                    <label htmlFor="tz" className="text-muted">
+                      Times in this file are
+                    </label>
+                    <select id="tz" value={offset} onChange={(e) => changeOffset(Number(e.target.value))} className="rounded-sm border border-rule bg-paper px-2 py-1">
+                      <option value={0}>UTC (Bitget&apos;s export default)</option>
+                      {tzOffset !== 0 && <option value={tzOffset}>My timezone ({zone(tzOffset)})</option>}
+                      {tzOffset !== 480 && <option value={480}>UTC+8 (Bitget Asia)</option>}
+                    </select>
+                  </div>
+                )}
                 {book.trades.length < 20 && book.trades.length > 0 && (
                   <p className="mt-3 text-sm">With fewer than 20 trades most habits will show as &quot;not enough data yet&quot;. Hindsight won&apos;t guess.</p>
                 )}
@@ -209,7 +234,8 @@ export function ImportView() {
         <div>
           <h2 className="font-medium">Times</h2>
           <p className="mt-1 text-muted">
-            Times with a timezone (or a header like &quot;Date(UTC+8)&quot;) are read as given. Times without one are read in your timezone.
+            Times with a timezone (or a header like &quot;Date(UTC+8)&quot;) are read as given. Times without one are read as UTC, which is what
+            Bitget&apos;s export uses; you can change it after uploading.
           </p>
         </div>
         <p className="text-muted">

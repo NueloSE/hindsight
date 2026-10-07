@@ -11,6 +11,8 @@ export const TEMPLATE_HEADER = "time_utc,symbol,side,price,quantity,fee_usdt";
 
 export interface CsvImport {
   fills: Fill[];
+  /** How many times had no timezone and were read with `defaultOffsetMinutes` (UTC unless chosen otherwise). */
+  naiveTimes?: number;
   warnings: string[];
   /** Rows skipped because the symbol isn't a supported rToken, by symbol. */
   unsupported: Record<string, number>;
@@ -20,16 +22,32 @@ export interface CsvImport {
 
 type Field = "time" | "symbol" | "side" | "price" | "qty" | "total" | "fee" | "feeCoin" | "id";
 
+/**
+ * Header aliases. Bitget's website export uses
+ *   Order ID, Trading Pair, Side, Filled Price, Filled Amount, Total, Fee, Fee Currency, Order Time, Order Type
+ * and an API-style variant
+ *   orderId, symbol, side, priceAvg, size, baseVolume, quoteVolume, fee, feeCurrency, cTime
+ * (as documented by the open-source daybook and dtax parsers), in the user's language.
+ */
 const ALIASES: Record<Field, string[]> = {
-  time: ["time_utc", "time", "date", "datetime", "created time", "order time", "trade time", "filled time", "ctime", "date(utc)"],
-  symbol: ["symbol", "trading pair", "pair", "coin pair", "market", "instrument"],
-  side: ["side", "direction", "type", "buy/sell", "trade side"],
-  price: ["price", "avg. price", "average price", "filled price", "price avg", "priceavg", "deal price", "execution price"],
-  qty: ["quantity", "qty", "amount", "filled", "filled amount", "size", "executed", "filled quantity", "base volume"],
-  total: ["total", "turnover", "filled total", "quote volume", "volume", "value"],
-  fee: ["fee_usdt", "fee", "fees", "trading fee", "transaction fee"],
-  feeCoin: ["fee coin", "fee currency", "fee asset", "feecoin"],
-  id: ["trade id", "order id", "id", "tradeid", "orderid", "fill id"],
+  time: [
+    "time_utc", "order time", "ordertime", "trade time", "filled time", "time", "date", "datetime", "created time", "ctime", "timestamp", "date(utc)",
+    "下单时间", "下單時間", "成交时间", "注文時間", "주문 시간",
+  ],
+  symbol: ["symbol", "trading pair", "tradingpair", "pair", "coin pair", "market", "instrument", "交易对", "交易對", "銘柄", "거래쌍"],
+  side: ["side", "direction", "type", "buy/sell", "trade side", "方向", "売買", "유형"],
+  price: [
+    "price", "filled price", "avg. filled price", "avg. price", "average price", "price avg", "priceavg", "deal price", "execution price",
+    "成交价", "成交價", "約定価格", "체결 가격",
+  ],
+  qty: [
+    "quantity", "qty", "filled amount", "amount", "filled", "size", "base volume", "basevolume", "executed", "filled quantity",
+    "成交量", "成交數量", "約定数量", "체결 수량",
+  ],
+  total: ["total", "quote volume", "quotevolume", "turnover", "filled total", "volume", "value", "funds", "总额", "總額", "合計", "총액"],
+  fee: ["fee_usdt", "fee", "fees", "trading fee", "transaction fee", "手续费", "手續費", "手数料", "수수료"],
+  feeCoin: ["fee currency", "feecurrency", "fee coin", "feecoin", "fee ccy", "fee asset", "手续费币种", "手續費幣種", "手数料通貨", "수수료 통화"],
+  id: ["trade id", "tradeid", "order id", "orderid", "id", "fill id", "订单号", "訂單號", "注文id", "주문 id"],
 };
 
 /** RFC 4180 CSV parser: quoted fields, escaped quotes, CRLF, BOM. */
@@ -105,13 +123,19 @@ export function parseTime(raw: string, offsetMinutes: number): number {
 
 /** "rNVDA/USDT", "RNVDA_USDT", "RNVDAUSDT" → "NVDA"; null if not a supported rToken. */
 export function rTokenTicker(raw: string): string | null {
-  const s = raw.trim().toUpperCase().replace(/[\s/_-]/g, "");
+  // Drop Bitget's legacy product suffix ("RNVDAUSDT_SPBL"), then separators ("rNVDA/USDT", "RNVDA_USDT").
+  const s = raw.trim().toUpperCase().replace(/(USDT)_[A-Z]+$/, "$1").replace(/[\s/_-]/g, "");
   if (!s.endsWith("USDT") || !s.startsWith("R")) return null;
   return isSupported(s) ? instrument(s).ticker : null;
 }
 
-export function importCsv(text: string, opts: { defaultOffsetMinutes?: number } = {}): CsvImport {
-  const result: CsvImport = { fills: [], warnings: [], unsupported: {}, errors: [] };
+export interface ImportOptions {
+  /** Offset for times without a timezone. Defaults to UTC, which is what Bitget's export uses. */
+  defaultOffsetMinutes?: number;
+}
+
+export function importCsv(text: string, opts: ImportOptions = {}): CsvImport {
+  const result: CsvImport = { fills: [], warnings: [], unsupported: {}, errors: [], naiveTimes: 0 };
   const rows = parseCsv(text);
   if (rows.length < 2) {
     result.errors.push({ line: 1, message: "The file has no data rows." });
@@ -157,7 +181,7 @@ export function importCsv(text: string, opts: { defaultOffsetMinutes?: number } 
     }
 
     const sideRaw = (get("side") ?? "").trim().toLowerCase();
-    const side = /buy|买/.test(sideRaw) ? "buy" : /sell|卖/.test(sideRaw) ? "sell" : null;
+    const side = /buy|买|買|매수/.test(sideRaw) ? "buy" : /sell|卖|賣|売|매도/.test(sideRaw) ? "sell" : null;
     if (!side) {
       result.errors.push({ line, message: `Unrecognised side "${get("side")}".` });
       continue;
@@ -192,6 +216,7 @@ export function importCsv(text: string, opts: { defaultOffsetMinutes?: number } 
     result.fills.push({ id: id ? `${id}-${line}` : `csv-${line}`, t, ticker, side, qty, price, fee });
   }
 
+  result.naiveTimes = naiveTimes;
   if (naiveTimes) {
     const zone = offset === 0 ? "UTC" : `UTC${offset >= 0 ? "+" : ""}${offset / 60}`;
     result.warnings.push(`${naiveTimes} time(s) had no timezone and were read as ${zone}.`);

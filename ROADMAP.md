@@ -94,7 +94,7 @@ Status key: `[ ]` todo · `[~]` in progress · `[x]` done
 
 ## After S2 (toward Season 3)
 - [x] Read-only Bitget API-key import (beta; keys used per request, never stored)
-- [ ] Verify API and CSV parsing against an account with real rToken trades
+- [ ] Verify API and CSV parsing against an account with real rToken trades (CSV headers now match the documented Bitget export format from the open-source daybook and dtax parsers, incl. `_SPBL` suffixes, ZH/JA/KO headers and UTC times)
 - [ ] 2–3 sample traders; full habit library (9+)
 - [ ] Rule editing and version history
 - [ ] Outcome feedback loop: logged decisions update rules
