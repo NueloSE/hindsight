@@ -40,7 +40,7 @@ interface Decision {
 }
 
 const SCENARIOS = [
-  { label: "Sunday night, rMSTR is up 2.4% since Friday", text: "buy $1,500 of rMSTR", at: Date.parse("2026-10-04T04:00:00Z") },
+  { label: "Early Sunday, rMSTR is up 2.4% since Friday", text: "buy $1,500 of rMSTR", at: Date.parse("2026-10-04T04:00:00Z") },
   { label: "Two days before NVIDIA earnings", text: "buy $1,200 of rNVDA", at: Date.parse("2026-08-25T15:00:00Z") },
   { label: "A quiet Wednesday afternoon in rTSLA", text: "buy $1,000 of rTSLA", at: Date.parse("2026-09-09T17:00:00Z") },
 ];

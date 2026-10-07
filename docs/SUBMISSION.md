@@ -56,7 +56,7 @@ Stack: Next.js 16, TypeScript, Vercel; AI SDK 7.
 - Code: https://github.com/NueloSE/hindsight
 - Blind accuracy test, method and results: https://hindsight-puce.vercel.app/accuracy
 - Example Bitget-style export to try the importer: https://hindsight-puce.vercel.app/example-bitget-export.csv
-- Complete research task (question → actionable insight): "Should I buy $1,500 of rMSTR on Sunday night after it's up 2.4%?" → Hindsight flags the closed-market chasing rule, shows the trader's 25 previous chases (64% win rate, +0.04% average, +$45 total), the 15 most similar trades, and a stop-loss reminder; the trader chooses skip / smaller / take it, and the decision is logged.
+- Complete research task (question → actionable insight): "Should I buy $1,500 of rMSTR early on Sunday after it's up 2.4%?" → Hindsight flags the closed-market chasing rule, shows the trader's 25 previous chases (64% win rate, +0.04% average, +$45 total), the 15 most similar trades, and a stop-loss reminder; the trader chooses skip / smaller / take it, and the decision is logged.
 
 **6 · Our take on AI trading (optional)**
 The most useful thing an LLM can do for a retail trader isn't to predict prices, it's to make the trader's own evidence legible at the moment it matters, and to stay quiet when the evidence isn't there. We think trading copilots should be held to a measurable standard: publish a false-alarm rate, show the trades behind every claim, and make it structurally impossible for the model to invent a number.
@@ -98,7 +98,7 @@ Qwen: we didn't receive Qwen credits; the model layer is one config file, so swi
 1. **0:00 Hook (15s).** Landing page. "rTokens trade 24/7. So do your mistakes. Hindsight is the review you never do."
 2. **0:15 The review (45s).** Open Tolu's review. Summary: profitable before fees, fees turned it into a loss. Scroll to "Chasing moves while Wall Street sleeps": 37% vs 9% by chance. Click an evidence chip → trade chart with the shaded closed-market hours.
 3. **1:00 Honest rules (30s).** Rule card: the stop-loss costs $543 but cuts the worst trade from −17.9% to −3.2%. "It tells you the trade-off, not a sales pitch." Click "Add to my rules".
-4. **1:30 The research task (40s).** Check a trade → "Sunday night, rMSTR up 2.4%". Verdict, past chases, similar trades, reminder. Click "Take it smaller": logged.
+4. **1:30 The research task (40s).** Check a trade → "Early Sunday, rMSTR up 2.4%". Verdict, past chases, similar trades, reminder. Click "Take it smaller": logged.
 5. **2:10 Trust (20s).** Accuracy page: 71% found, 0.2% false alarms, 0/16 wrongly accused. "Code calculates, the AI explains." Ask the coach one question; show the "numbers checked" line.
 6. **2:30 End.** URL on screen.
 

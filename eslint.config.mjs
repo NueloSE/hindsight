@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Demo film tooling lives in its own project.
+    "video/**",
   ]),
 ]);
 

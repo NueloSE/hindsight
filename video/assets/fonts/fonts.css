@@ -1,0 +1,6 @@
+@font-face { font-family: "Newsreader"; src: url("Newsreader-500.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: "Newsreader"; src: url("Newsreader-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; font-display: block; }
+@font-face { font-family: "Geist"; src: url("Geist-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Geist"; src: url("Geist-500.woff2") format("woff2"); font-weight: 500; font-display: block; }
+@font-face { font-family: "Geist Mono"; src: url("GeistMono-400.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Inter"; src: url("Inter-500.woff2") format("woff2"); font-weight: 500; font-display: block; }
