@@ -52,7 +52,7 @@ Stack: Next.js 16, TypeScript, Vercel; AI SDK 7.
 **5 · Deliverables (all in "Submission Materials Link")**
 - Live demo: https://hindsight-puce.vercel.app (no login; sample trader preloaded)
 - Demo video: [FILL link]
-- Code: [FILL GitHub link]
+- Code: https://github.com/NueloSE/hindsight
 - Blind accuracy test, method and results: https://hindsight-puce.vercel.app/accuracy
 - Example Bitget-style export to try the importer: https://hindsight-puce.vercel.app/example-bitget-export.csv
 - Complete research task (question → actionable insight): "Should I buy $1,500 of rMSTR on Sunday night after it's up 2.4%?" → Hindsight flags the closed-market chasing rule, shows the trader's 25 previous chases (64% win rate, +0.04% average, +$45 total), the 15 most similar trades, and a stop-loss reminder; the trader chooses skip / smaller / take it, and the decision is logged.
