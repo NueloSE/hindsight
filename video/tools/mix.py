@@ -53,10 +53,13 @@ def rms_db(x: np.ndarray) -> float:
 
 
 def peak_offset(x: np.ndarray) -> float:
+    """Time of the sound's main peak: the loudest moment of a 10 ms envelope within the first 60% of the file,
+    so a stray spike in a long tail (e.g. a sub-bass impact) can't pull the placement late."""
     env = np.abs(x).mean(axis=1)
     k = int(0.01 * SR)
     smooth = np.convolve(env, np.ones(k) / k, mode="same")
-    return int(np.argmax(smooth)) / SR
+    head = smooth[: max(k, int(len(smooth) * 0.6))]
+    return int(np.argmax(head)) / SR
 
 
 def place(dst: np.ndarray, src: np.ndarray, start: float) -> None:

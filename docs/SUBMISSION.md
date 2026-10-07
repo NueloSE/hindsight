@@ -52,7 +52,7 @@ Stack: Next.js 16, TypeScript, Vercel; AI SDK 7.
 
 **5 · Deliverables (all in "Submission Materials Link")**
 - Live demo: https://hindsight-puce.vercel.app (no login; sample trader preloaded)
-- Demo video: [FILL link]
+- Demo video: [FILL YouTube link] (file: video/renders/hindsight-demo.mp4, 3:20)
 - Code: https://github.com/NueloSE/hindsight
 - Blind accuracy test, method and results: https://hindsight-puce.vercel.app/accuracy
 - Example Bitget-style export to try the importer: https://hindsight-puce.vercel.app/example-bitget-export.csv
